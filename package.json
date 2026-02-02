@@ -3,8 +3,8 @@
 	"version": "1.0.0",
 	"type": "module",
 	"scripts": {
-		"dev": "tsx hevy-routine-import.ts",
-		"dry-run": "tsx hevy-routine-import.ts --dry-run"
+		"dev": "node --env-file=.env --import=tsx ./hevy-routine-import.ts",
+		"dry-run": "node --env-file=.env --import=tsx ./hevy-routine-import.ts --dry-run"
 	},
 	"dependencies": {
 		"csv-parse": "^5.5.6",
