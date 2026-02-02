@@ -1,19 +1,19 @@
 {
-  "name": "hevy-import",
-  "version": "1.0.0",
-  "type": "module",
-  "scripts": {
-    "import": "tsx hevy-routine-import.ts",
-    "dry-run": "tsx hevy-routine-import.ts --dry-run"
-  },
-  "dependencies": {
-    "csv-parse": "^5.5.6",
-    "string-similarity": "^4.0.4"
-  },
-  "devDependencies": {
-    "@types/node": "^20.14.0",
-    "@types/string-similarity": "^4.0.2",
-    "tsx": "^4.15.0",
-    "typescript": "^5.4.5"
-  }
+	"name": "hevy-import",
+	"version": "1.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "tsx hevy-routine-import.ts",
+		"dry-run": "tsx hevy-routine-import.ts --dry-run"
+	},
+	"dependencies": {
+		"csv-parse": "^5.5.6",
+		"string-similarity": "^4.0.4"
+	},
+	"devDependencies": {
+		"@types/node": "^20.14.0",
+		"@types/string-similarity": "^4.0.2",
+		"tsx": "^4.15.0",
+		"typescript": "^5.4.5"
+	}
 }
