@@ -50,7 +50,7 @@ if (weekArg) {
 
 // Configuration
 const API_BASE = "https://api.hevyapp.com/v1";
-const API_KEY = process.env.HEVY_API_KEY ?? "";
+const API_KEY = process.env.HEVY_API_KEY;
 const CSV_PATH = new URL("./16-week-powerlifting-program.csv", import.meta.url);
 const PROGRAM_SUFFIX = "15 Week Periodized Program";
 
@@ -93,7 +93,9 @@ async function apiPost<T>(endpoint: string, body: unknown): Promise<T> {
 	});
 	const text = await response.text();
 	if (!response.ok) {
-		throw new Error(`API POST ${endpoint} failed: ${response.status} - ${text}`);
+		throw new Error(
+			`API POST ${endpoint} failed: ${response.status} - ${text}`,
+		);
 	}
 	try {
 		return JSON.parse(text) as T;
@@ -460,9 +462,14 @@ async function main() {
 				);
 				for (const exercise of day.exercises) {
 					const notes = buildExerciseNotes(exercise);
-					const weightStr = exercise.weightKg === "BW" ? "BW" :
-						exercise.weightKg === "Select" ? "?" :
-						exercise.weightKg ? `${exercise.weightKg}kg` : "?";
+					const weightStr =
+						exercise.weightKg === "BW"
+							? "BW"
+							: exercise.weightKg === "Select"
+								? "?"
+								: exercise.weightKg
+									? `${exercise.weightKg}kg`
+									: "?";
 					console.log(
 						`       - ${exercise.name}: ${exercise.sets}x${exercise.reps || "?"} @ ${weightStr} ${notes ? `(${notes})` : ""}`,
 					);
