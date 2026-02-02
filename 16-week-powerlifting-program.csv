@@ -1,0 +1,202 @@
+WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
+1,A - Squat,Pause Squat (3 sec),4,8,65%,102.5,,,"Pause in hole, stay tight"
+1,A - Squat,Leg Press,3,12,-,166,,,Controlled tempo
+1,A - Squat,Romanian Deadlift,3,10,50%,90,,,Hamstring stretch
+1,A - Squat,Leg Extension,3,15,-,75,,,
+1,A - Squat,Hanging Leg Raise,3,10,-,BW,,,
+1,B - Bench,Larsen Press (feet up),4,8,65%,67.5,,,"Pause on chest, no leg drive"
+1,B - Bench,Incline DB Press,3,10,-,26,,,
+1,B - Bench,Chest Dip,3,AMRAP,-,BW,,,Bodyweight
+1,B - Bench,Pec Deck,3,15,-,50,,,
+1,B - Bench,Tricep Extension (Cable),3,15,-,25,,,
+1,C - Deadlift,Deficit Deadlift (5cm),4,6,65%,117.5,,,"Stand on plate, control descent"
+1,C - Deadlift,Pull Up,4,AMRAP,-,BW,,,Rings or bar
+1,C - Deadlift,Seated Cable Row,3,12,-,60,,,
+1,C - Deadlift,Barbell Curl,3,12,-,34,,,
+1,C - Deadlift,Cable Crunch,3,15,-,36,,,
+1,D - Volume,Front Squat,3,8,50%,80,,,Core stability focus
+1,D - Volume,Close Grip Bench,3,10,60%,62.5,,,Tricep emphasis
+1,D - Volume,Inverted Row (Rings),3,12,-,BW,,,
+1,D - Volume,Lateral Raise,3,15,-,7.5,,,
+1,D - Volume,Face Pull,3,15,-,12,,,
+2,A - Squat,Pause Squat (3 sec),4,8,67%,105,,,+2% from last week
+2,A - Squat,Leg Press,3,12,-,166,,,
+2,A - Squat,Romanian Deadlift,3,10,52%,92.5,,,
+2,A - Squat,Leg Extension,3,15,-,75,,,
+2,A - Squat,Hanging Leg Raise,3,12,-,BW,,,
+2,B - Bench,Larsen Press (feet up),4,8,67%,70,,,
+2,B - Bench,Incline DB Press,3,10,-,26,,,
+2,B - Bench,Chest Dip,3,AMRAP,-,BW,,,
+2,B - Bench,Pec Deck,3,15,-,50,,,
+2,B - Bench,Tricep Extension (Cable),3,15,-,25,,,
+2,C - Deadlift,Deficit Deadlift (5cm),4,6,67%,120,,,
+2,C - Deadlift,Pull Up,4,AMRAP,-,BW,,,
+2,C - Deadlift,Seated Cable Row,3,12,-,60,,,
+2,C - Deadlift,Barbell Curl,3,12,-,34,,,
+2,C - Deadlift,Cable Crunch,3,15,-,36,,,
+2,D - Volume,Front Squat,3,8,52%,82.5,,,
+2,D - Volume,Close Grip Bench,3,10,62%,65,,,
+2,D - Volume,Inverted Row (Rings),3,12,-,BW,,,
+2,D - Volume,Lateral Raise,3,15,-,7.5,,,
+2,D - Volume,Face Pull,3,15,-,12,,,
+3,A - Squat,Pause Squat (3 sec),4,6,70%,110,,,"Intensity up, reps down"
+3,A - Squat,Leg Press,4,10,-,166,,,
+3,A - Squat,Romanian Deadlift,3,8,55%,100,,,
+3,A - Squat,Leg Extension,3,12,-,75,,,
+3,A - Squat,Hanging Leg Raise,3,12,-,BW,,,
+3,B - Bench,Larsen Press (feet up),4,6,70%,72.5,,,
+3,B - Bench,Incline DB Press,4,8,-,26,,,
+3,B - Bench,Chest Dip,4,AMRAP,-,BW,,,
+3,B - Bench,Pec Deck,3,12,-,50,,,
+3,B - Bench,Tricep Extension (Cable),4,12,-,25,,,
+3,C - Deadlift,Deficit Deadlift (5cm),4,5,70%,125,,,
+3,C - Deadlift,Pull Up,4,AMRAP,-,BW,,,
+3,C - Deadlift,Seated Cable Row,4,10,-,60,,,
+3,C - Deadlift,Barbell Curl,3,10,-,34,,,
+3,C - Deadlift,Cable Crunch,3,15,-,36,,,
+3,D - Volume,Front Squat,3,6,55%,87.5,,,
+3,D - Volume,Close Grip Bench,3,8,65%,67.5,,,
+3,D - Volume,Inverted Row (Rings),4,10,-,BW,,,
+3,D - Volume,Lateral Raise,3,15,-,7.5,,,
+3,D - Volume,Face Pull,3,15,-,12,,,
+4,A - Squat (DELOAD),Back Squat,3,5,50%,80,,,DELOAD - easy movement
+4,A - Squat (DELOAD),Leg Extension,2,12,-,75,,,Light
+4,A - Squat (DELOAD),Hanging Leg Raise,2,10,-,BW,,,
+4,B - Bench (DELOAD),Bench Press,3,5,50%,52.5,,,DELOAD - technique focus
+4,B - Bench (DELOAD),Pec Deck,2,12,-,50,,,Light
+4,B - Bench (DELOAD),Tricep Extension,2,12,-,25,,,
+4,C - Deadlift (DELOAD),Deadlift,3,5,50%,90,,,DELOAD - crisp reps
+4,C - Deadlift (DELOAD),Pull Up,2,Easy,-,BW,,,
+4,C - Deadlift (DELOAD),Cable Row,2,12,-,60,,,Light
+5,A - Squat,Back Squat,5,5,75%,117.5,,,Competition style
+5,A - Squat,Pause Squat (2 sec),3,4,65%,102.5,,,Lighter variation work
+5,A - Squat,Romanian Deadlift,3,8,55%,100,,,
+5,A - Squat,Leg Extension,3,12,-,75,,,
+5,A - Squat,Cable Crunch,3,12,-,36,,,
+5,B - Bench,Bench Press,5,5,75%,77.5,,,Competition style
+5,B - Bench,"Spoto Press (1"" pause)",3,5,65%,67.5,,,Pause just off chest
+5,B - Bench,Incline DB Press,3,8,-,26,,,
+5,B - Bench,Chest Dip,3,AMRAP,-,BW,,,
+5,B - Bench,Tricep Extension (Cable),3,12,-,25,,,
+5,C - Deadlift,Deadlift,5,5,75%,135,,,Competition style
+5,C - Deadlift,Deficit Deadlift (2.5cm),3,4,65%,117.5,,,Smaller deficit now
+5,C - Deadlift,Pull Up,4,AMRAP,-,BW,,,
+5,C - Deadlift,Barbell Row,3,8,-,80,,,
+5,C - Deadlift,Barbell Curl,3,10,-,34,,,
+5,D - Volume,Front Squat,3,5,55%,87.5,,,
+5,D - Volume,Close Grip Bench,3,6,65%,67.5,,,
+5,D - Volume,Inverted Row (Rings),3,10,-,BW,,,
+5,D - Volume,Lateral Raise,3,12,-,7.5,,,
+5,D - Volume,Face Pull,3,15,-,12,,,
+6,A - Squat,Back Squat,5,4,80%,125,,,+5% intensity
+6,A - Squat,Pause Squat (2 sec),3,3,70%,110,,,
+6,A - Squat,Romanian Deadlift,3,8,57%,102.5,,,
+6,A - Squat,Leg Extension,3,12,-,75,,,
+6,A - Squat,Cable Crunch,3,12,-,36,,,
+6,B - Bench,Bench Press,5,4,80%,82.5,,,
+6,B - Bench,"Spoto Press (1"" pause)",3,4,70%,72.5,,,
+6,B - Bench,Incline DB Press,3,8,-,26,,,
+6,B - Bench,Chest Dip,3,AMRAP,-,BW,,,
+6,B - Bench,Tricep Extension (Cable),3,12,-,25,,,
+6,C - Deadlift,Deadlift,5,4,80%,145,,,
+6,C - Deadlift,Deficit Deadlift (2.5cm),3,3,70%,125,,,
+6,C - Deadlift,Pull Up,4,AMRAP,-,BW,,,
+6,C - Deadlift,Barbell Row,3,8,-,80,,,
+6,C - Deadlift,Barbell Curl,3,10,-,34,,,
+6,D - Volume,Front Squat,3,5,57%,90,,,
+6,D - Volume,Close Grip Bench,3,6,67%,70,,,
+6,D - Volume,Inverted Row (Rings),3,10,-,BW,,,
+6,D - Volume,Lateral Raise,3,12,-,7.5,,,
+6,D - Volume,Face Pull,3,15,-,12,,,
+7,A - Squat,Back Squat,4,3,85%,135,,,Heavy triples
+7,A - Squat,Pause Squat (2 sec),3,3,72%,112.5,,,
+7,A - Squat,Romanian Deadlift,3,6,60%,107.5,,,
+7,A - Squat,Leg Extension,3,10,-,75,,,
+7,A - Squat,Cable Crunch,3,12,-,36,,,
+7,B - Bench,Bench Press,4,3,85%,87.5,,,Heavy triples
+7,B - Bench,"Spoto Press (1"" pause)",3,3,72%,75,,,
+7,B - Bench,Incline DB Press,3,6,-,26,,,
+7,B - Bench,Chest Dip,3,AMRAP,-,BW,,,
+7,B - Bench,Tricep Extension (Cable),3,10,-,25,,,
+7,C - Deadlift,Deadlift,4,3,85%,152.5,,,Heavy triples
+7,C - Deadlift,Paused Deadlift (below knee),3,3,70%,125,,,New variation
+7,C - Deadlift,Pull Up,4,AMRAP,-,BW,,,
+7,C - Deadlift,Barbell Row,3,6,-,80,,,
+7,C - Deadlift,Barbell Curl,3,8,-,34,,,
+7,D - Volume,Front Squat,3,4,60%,95,,,
+7,D - Volume,Close Grip Bench,3,5,70%,72.5,,,
+7,D - Volume,Inverted Row (Rings),3,8,-,BW,,,
+7,D - Volume,Lateral Raise,3,12,-,7.5,,,
+7,D - Volume,Face Pull,3,12,-,12,,,
+8,A - Squat (DELOAD),Back Squat,3,3,60%,95,,,DELOAD - speed work
+8,A - Squat (DELOAD),Leg Extension,2,12,-,75,,,Light
+8,A - Squat (DELOAD),Cable Crunch,2,10,-,36,,,
+8,B - Bench (DELOAD),Bench Press,3,3,60%,62.5,,,DELOAD - explosive
+8,B - Bench (DELOAD),Pec Deck,2,12,-,50,,,Light
+8,B - Bench (DELOAD),Tricep Extension,2,12,-,25,,,
+8,C - Deadlift (DELOAD),Deadlift,3,3,60%,107.5,,,DELOAD - snap off floor
+8,C - Deadlift (DELOAD),Pull Up,2,Easy,-,BW,,,
+8,C - Deadlift (DELOAD),Cable Row,2,12,-,60,,,Light
+9,A - Squat,Back Squat,4,3,87%,137.5,,,Peaking begins
+9,A - Squat,Pause Squat (1 sec),2,2,75%,117.5,,,Brief pause only
+9,A - Squat,Leg Extension,2,10,-,75,,,Reduced accessories
+9,A - Squat,Hanging Leg Raise,2,10,-,BW,,,
+9,B - Bench,Bench Press,4,3,87%,90,,,
+9,B - Bench,Close Grip Bench,2,4,72%,75,,,
+9,B - Bench,Chest Dip,2,AMRAP,-,BW,,,
+9,B - Bench,Tricep Extension (Cable),2,10,-,25,,,
+9,C - Deadlift,Deadlift,4,3,87%,157.5,,,
+9,C - Deadlift,Paused Deadlift (below knee),2,2,72%,130,,,
+9,C - Deadlift,Pull Up,3,AMRAP,-,BW,,,
+9,C - Deadlift,Barbell Curl,2,10,-,34,,,
+9,D - Volume,Front Squat,2,4,55%,87.5,,,Light technique
+9,D - Volume,Incline DB Press,2,8,-,26,,,
+9,D - Volume,Inverted Row (Rings),2,10,-,BW,,,
+9,D - Volume,Face Pull,2,15,-,12,,,
+10,A - Squat,Back Squat,3,2,90%,142.5,,,Heavy doubles
+10,A - Squat,Back Squat (backoff),2,4,75%,117.5,,,
+10,A - Squat,Leg Extension,2,10,-,75,,,
+10,B - Bench,Bench Press,3,2,90%,92.5,,,Heavy doubles
+10,B - Bench,Bench Press (backoff),2,4,75%,77.5,,,
+10,B - Bench,Tricep Extension (Cable),2,10,-,25,,,
+10,C - Deadlift,Deadlift,3,2,90%,162.5,,,Heavy doubles
+10,C - Deadlift,Deadlift (backoff),2,3,75%,135,,,
+10,C - Deadlift,Pull Up,2,AMRAP,-,BW,,,
+10,D - Volume,Light Squat,2,5,50%,80,,,Recovery work
+10,D - Volume,Light Bench,2,5,50%,52.5,,,
+10,D - Volume,Face Pull,2,15,-,12,,,
+11,A - Squat,Back Squat,2,1,95%,150,,,Heavy singles - opener practice
+11,A - Squat,Back Squat (backoff),2,3,80%,125,,,
+11,A - Squat,Leg Extension,2,10,-,75,,,
+11,B - Bench,Bench Press,2,1,95%,97.5,,,Heavy singles
+11,B - Bench,Bench Press (backoff),2,3,80%,82.5,,,
+11,B - Bench,Tricep Extension (Cable),2,10,-,25,,,
+11,C - Deadlift,Deadlift,2,1,95%,170,,,Heavy singles
+11,C - Deadlift,Deadlift (backoff),2,3,80%,145,,,
+11,C - Deadlift,Pull Up,2,Easy,-,BW,,,
+12,A - Squat (DELOAD),Back Squat,2,2,70%,110,,,DELOAD - stay sharp
+12,A - Squat (DELOAD),Light accessories only,-,-,-,Select,,,
+12,B - Bench (DELOAD),Bench Press,2,2,70%,72.5,,,DELOAD
+12,B - Bench (DELOAD),Light accessories only,-,-,-,Select,,,
+12,C - Deadlift (DELOAD),Deadlift,2,2,70%,125,,,DELOAD
+12,C - Deadlift (DELOAD),Light accessories only,-,-,-,Select,,,
+13,A - Squat,Back Squat,1,1,100%,157.5,,,Work up to Training Max
+13,A - Squat,Back Squat (backoff),2,3,75%,117.5,,,
+13,B - Bench,Bench Press,1,1,100%,102.5,,,Work up to Training Max
+13,B - Bench,Bench Press (backoff),2,3,75%,77.5,,,
+13,C - Deadlift,Deadlift,1,1,100%,180,,,Work up to Training Max
+13,C - Deadlift,Deadlift (backoff),2,3,75%,135,,,
+14,A - Squat (TEST),Back Squat - NEW 1RM,1,1,103%,162.5,,,*** PR ATTEMPT *** Work up in singles
+14,A - Squat (TEST),Optional: 2nd attempt,1,1,106%,167.5,,,Only if first felt easy
+14,B - Bench (TEST),Bench Press - NEW 1RM,1,1,103%,107.5,,,*** PR ATTEMPT ***
+14,B - Bench (TEST),Optional: 2nd attempt,1,1,106%,110,,,Only if first felt easy
+14,C - Deadlift (TEST),Deadlift - NEW 1RM,1,1,103%,185,,,*** PR ATTEMPT ***
+14,C - Deadlift (TEST),Optional: 2nd attempt,1,1,106%,190,,,Only if first felt easy
+15,A - Squat (Recovery),Light Squat,3,5,50%,80,,,Active recovery week
+15,A - Squat (Recovery),Light accessories,-,-,-,Select,,,
+15,B - Bench (Recovery),Light Bench,3,5,50%,52.5,,,
+15,B - Bench (Recovery),Light accessories,-,-,-,Select,,,
+15,C - Deadlift (Recovery),Light Deadlift,3,5,50%,90,,,
+15,C - Deadlift (Recovery),Light accessories,-,-,-,Select,,,
+16,NOTES,UPDATE TRAINING MAXES,-,-,-,Select,,,Add 2.5-5kg to successful lifts
+16,NOTES,Begin next 16-week cycle,-,-,-,Select,,,Use new TMs on Setup sheet
