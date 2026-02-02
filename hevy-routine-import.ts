@@ -50,8 +50,7 @@ if (weekArg) {
 
 // Configuration
 const API_BASE = "https://api.hevyapp.com/v1";
-const API_KEY =
-	process.env.HEVY_API_KEY ?? "3a132a86-2eda-493e-a456-09c0213ddfe3";
+const API_KEY = process.env.HEVY_API_KEY ?? "";
 const CSV_PATH = new URL("./16-week-powerlifting-program.csv", import.meta.url);
 const PROGRAM_SUFFIX = "15 Week Periodized Program";
 
