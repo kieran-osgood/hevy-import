@@ -37,6 +37,22 @@ if (weekEqualIdx !== -1) {
 	}
 }
 
+// Parse --from-week argument (supports --from-week=5, --from-week 5)
+let fromWeekArg: string | undefined;
+const fromWeekEqualIdx = args.findIndex((a) => a.startsWith("--from-week="));
+if (fromWeekEqualIdx !== -1) {
+	fromWeekArg = args[fromWeekEqualIdx].split("=")[1];
+} else {
+	const fromWeekIdx = args.indexOf("--from-week");
+	if (
+		fromWeekIdx !== -1 &&
+		args[fromWeekIdx + 1] &&
+		!args[fromWeekIdx + 1].startsWith("--")
+	) {
+		fromWeekArg = args[fromWeekIdx + 1];
+	}
+}
+
 let weekRange: [number, number] | null = null;
 if (weekArg) {
 	if (weekArg.includes("-")) {
@@ -46,6 +62,9 @@ if (weekArg) {
 		const week = Number(weekArg);
 		weekRange = [week, week];
 	}
+} else if (fromWeekArg) {
+	const fromWeek = Number(fromWeekArg);
+	weekRange = [fromWeek, 15];
 }
 
 // Configuration
