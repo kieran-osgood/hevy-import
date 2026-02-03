@@ -15,9 +15,10 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 1,C - Deadlift,Barbell Curl,3,12,-,34,,,
 1,C - Deadlift,Cable Crunch,3,15,-,36,,,
 1,D - Volume,Front Squat,3,8,50%,80,,,Core stability focus
-1,D - Volume,Close Grip Bench,3,10,60%,62.5,,,Tricep emphasis
+1,D - Volume,Ring Dip,3,AMRAP,,BW,,,Tricep emphasis
+1,D - Volume,Ring Rollout,3,AMRAP,,BW,,,Extend from rings like ab wheel
 1,D - Volume,Inverted Row (Rings),3,12,-,BW,,,
-1,D - Volume,Lateral Raise,3,15,-,7.5,,,
+1,D - Volume,Shoulder Press,3,8-12,,50,,,
 1,D - Volume,Face Pull,3,15,-,12,,,
 2,A - Squat,Pause Squat (3 sec),4,8,67%,105,,,+2% from last week
 2,A - Squat,Leg Press,3,12,-,166,,,
@@ -35,9 +36,10 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 2,C - Deadlift,Barbell Curl,3,12,-,34,,,
 2,C - Deadlift,Cable Crunch,3,15,-,36,,,
 2,D - Volume,Front Squat,3,8,52%,82.5,,,
-2,D - Volume,Close Grip Bench,3,10,62%,65,,,
+2,D - Volume,Ring Dip,3,AMRAP,,BW,,,
+2,D - Volume,Ring Rollout,3,AMRAP,,BW,,,Extend from rings like ab wheel
 2,D - Volume,Inverted Row (Rings),3,12,-,BW,,,
-2,D - Volume,Lateral Raise,3,15,-,7.5,,,
+2,D - Volume,Shoulder Press,3,8-12,,50,,,
 2,D - Volume,Face Pull,3,15,-,12,,,
 3,A - Squat,Pause Squat (3 sec),4,6,70%,110,,,"Intensity up, reps down"
 3,A - Squat,Leg Press,4,10,-,166,,,
@@ -55,9 +57,10 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 3,C - Deadlift,Barbell Curl,3,10,-,34,,,
 3,C - Deadlift,Cable Crunch,3,15,-,36,,,
 3,D - Volume,Front Squat,3,6,55%,87.5,,,
-3,D - Volume,Close Grip Bench,3,8,65%,67.5,,,
+3,D - Volume,Ring Dip,3,AMRAP,,BW,,,
+3,D - Volume,Ring Rollout,3,AMRAP,,BW,,,Extend from rings like ab wheel
 3,D - Volume,Inverted Row (Rings),4,10,-,BW,,,
-3,D - Volume,Lateral Raise,3,15,-,7.5,,,
+3,D - Volume,Shoulder Press,3,8-12,,50,,,
 3,D - Volume,Face Pull,3,15,-,12,,,
 4,A - Squat (DELOAD),Back Squat,3,5,50%,80,,,DELOAD - easy movement
 4,A - Squat (DELOAD),Leg Extension,2,12,-,75,,,Light
@@ -84,9 +87,10 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 5,C - Deadlift,Barbell Row,3,8,-,80,,,
 5,C - Deadlift,Barbell Curl,3,10,-,34,,,
 5,D - Volume,Front Squat,3,5,55%,87.5,,,
-5,D - Volume,Close Grip Bench,3,6,65%,67.5,,,
+5,D - Volume,Ring Dip,3,AMRAP,,BW,,,
+5,D - Volume,Ring Rollout,3,AMRAP,,BW,,,Extend from rings like ab wheel
 5,D - Volume,Inverted Row (Rings),3,10,-,BW,,,
-5,D - Volume,Lateral Raise,3,12,-,7.5,,,
+5,D - Volume,Shoulder Press,3,8-12,,50,,,
 5,D - Volume,Face Pull,3,15,-,12,,,
 6,A - Squat,Back Squat,5,4,80%,125,,,+5% intensity
 6,A - Squat,Pause Squat (2 sec),3,3,70%,110,,,
@@ -104,9 +108,10 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 6,C - Deadlift,Barbell Row,3,8,-,80,,,
 6,C - Deadlift,Barbell Curl,3,10,-,34,,,
 6,D - Volume,Front Squat,3,5,57%,90,,,
-6,D - Volume,Close Grip Bench,3,6,67%,70,,,
+6,D - Volume,Ring Dip,3,AMRAP,,BW,,,
+6,D - Volume,Ring Rollout,3,AMRAP,,BW,,,Extend from rings like ab wheel
 6,D - Volume,Inverted Row (Rings),3,10,-,BW,,,
-6,D - Volume,Lateral Raise,3,12,-,7.5,,,
+6,D - Volume,Shoulder Press,3,8-12,,50,,,
 6,D - Volume,Face Pull,3,15,-,12,,,
 7,A - Squat,Back Squat,4,3,85%,135,,,Heavy triples
 7,A - Squat,Pause Squat (2 sec),3,3,72%,112.5,,,
@@ -124,9 +129,10 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 7,C - Deadlift,Barbell Row,3,6,-,80,,,
 7,C - Deadlift,Barbell Curl,3,8,-,34,,,
 7,D - Volume,Front Squat,3,4,60%,95,,,
-7,D - Volume,Close Grip Bench,3,5,70%,72.5,,,
+7,D - Volume,Ring Dip,3,AMRAP,,BW,,,
+7,D - Volume,Ring Rollout,3,AMRAP,,BW,,,Extend from rings like ab wheel
 7,D - Volume,Inverted Row (Rings),3,8,-,BW,,,
-7,D - Volume,Lateral Raise,3,12,-,7.5,,,
+7,D - Volume,Shoulder Press,3,8-12,,50,,,
 7,D - Volume,Face Pull,3,12,-,12,,,
 8,A - Squat (DELOAD),Back Squat,3,3,60%,95,,,DELOAD - speed work
 8,A - Squat (DELOAD),Leg Extension,2,12,-,75,,,Light
@@ -192,11 +198,11 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 14,B - Bench (TEST),Optional: 2nd attempt,1,1,106%,110,,,Only if first felt easy
 14,C - Deadlift (TEST),Deadlift - NEW 1RM,1,1,103%,185,,,*** PR ATTEMPT ***
 14,C - Deadlift (TEST),Optional: 2nd attempt,1,1,106%,190,,,Only if first felt easy
-15,A - Squat (Recovery),Light Squat,3,5,50%,80,,,Active recovery week
-15,A - Squat (Recovery),Light accessories,-,-,-,Select,,,
-15,B - Bench (Recovery),Light Bench,3,5,50%,52.5,,,
-15,B - Bench (Recovery),Light accessories,-,-,-,Select,,,
-15,C - Deadlift (Recovery),Light Deadlift,3,5,50%,90,,,
-15,C - Deadlift (Recovery),Light accessories,-,-,-,Select,,,
+15,A - Recovery,Light Squat,3,5,50%,80,,,Active recovery week
+15,A - Recovery,Light accessories,-,-,-,Select,,,
+15,B - Recovery,Light Bench,3,5,50%,52.5,,,
+15,B - Recovery,Light accessories,-,-,-,Select,,,
+15,C - Recovery,Light Deadlift,3,5,50%,90,,,
+15,C - Recovery,Light accessories,-,-,-,Select,,,
 16,NOTES,UPDATE TRAINING MAXES,-,-,-,Select,,,Add 2.5-5kg to successful lifts
 16,NOTES,Begin next 16-week cycle,-,-,-,Select,,,Use new TMs on Setup sheet
