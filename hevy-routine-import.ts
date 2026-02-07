@@ -79,9 +79,50 @@ if (!API_KEY && !dryRun) {
 	process.exit(1);
 }
 
+// Rate limiting configuration
+const RATE_LIMIT = {
+	baseDelay: 1000, // 1 second between requests
+	maxRetries: 5,
+	initialBackoff: 5000, // 5 seconds initial backoff on 429
+	backoffMultiplier: 2, // Double the wait time on each retry
+};
+
 // Rate limiting helper
 async function sleep(ms: number): Promise<void> {
 	return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+// Wrapper for API calls with retry logic on 429
+async function withRetry<T>(
+	fn: () => Promise<T>,
+	context: string,
+): Promise<T> {
+	let lastError: Error | null = null;
+	let backoff = RATE_LIMIT.initialBackoff;
+
+	for (let attempt = 0; attempt <= RATE_LIMIT.maxRetries; attempt++) {
+		try {
+			const result = await fn();
+			// Add base delay after successful request
+			await sleep(RATE_LIMIT.baseDelay);
+			return result;
+		} catch (error) {
+			lastError = error as Error;
+			const errorMsg = lastError.message || "";
+
+			if (errorMsg.includes("429") && attempt < RATE_LIMIT.maxRetries) {
+				console.log(
+					`   ⏳ Rate limited on ${context}, waiting ${backoff / 1000}s (attempt ${attempt + 1}/${RATE_LIMIT.maxRetries})...`,
+				);
+				await sleep(backoff);
+				backoff *= RATE_LIMIT.backoffMultiplier;
+			} else {
+				throw lastError;
+			}
+		}
+	}
+
+	throw lastError;
 }
 
 // API helpers
@@ -149,16 +190,19 @@ async function fetchAllExerciseTemplates(): Promise<HevyExerciseTemplate[]> {
 	let pageCount = 1;
 
 	while (page <= pageCount) {
-		const response = await apiGet<{
-			page: number;
-			page_count: number;
-			exercise_templates: HevyExerciseTemplate[];
-		}>(`/exercise_templates?page=${page}&pageSize=100`);
+		const response = await withRetry(
+			() =>
+				apiGet<{
+					page: number;
+					page_count: number;
+					exercise_templates: HevyExerciseTemplate[];
+				}>(`/exercise_templates?page=${page}&pageSize=100`),
+			`fetch exercise templates page ${page}`,
+		);
 
 		templates.push(...response.exercise_templates);
 		pageCount = response.page_count;
 		page++;
-		await sleep(100); // Rate limiting
 	}
 
 	return templates;
@@ -173,16 +217,19 @@ async function fetchAllRoutineFolders(): Promise<
 	let pageCount = 1;
 
 	while (page <= pageCount) {
-		const response = await apiGet<{
-			page: number;
-			page_count: number;
-			routine_folders: Array<{ id: number; title: string }>;
-		}>(`/routine_folders?page=${page}`);
+		const response = await withRetry(
+			() =>
+				apiGet<{
+					page: number;
+					page_count: number;
+					routine_folders: Array<{ id: number; title: string }>;
+				}>(`/routine_folders?page=${page}`),
+			`fetch routine folders page ${page}`,
+		);
 
 		folders.push(...response.routine_folders);
 		pageCount = response.page_count;
 		page++;
-		await sleep(100);
 	}
 
 	return folders;
@@ -201,16 +248,19 @@ async function fetchAllRoutines(): Promise<
 	let pageCount = 1;
 
 	while (page <= pageCount) {
-		const response = await apiGet<{
-			page: number;
-			page_count: number;
-			routines: Array<{ id: string; title: string; folder_id: number | null }>;
-		}>(`/routines?page=${page}`);
+		const response = await withRetry(
+			() =>
+				apiGet<{
+					page: number;
+					page_count: number;
+					routines: Array<{ id: string; title: string; folder_id: number | null }>;
+				}>(`/routines?page=${page}`),
+			`fetch routines page ${page}`,
+		);
 
 		routines.push(...response.routines);
 		pageCount = response.page_count;
 		page++;
-		await sleep(100);
 	}
 
 	return routines;
@@ -521,7 +571,10 @@ async function main() {
 		console.log(`   Creating ${needsCreation.length} custom exercises...\n`);
 		for (const [name] of needsCreation) {
 			console.log(`   Creating: ${name}`);
-			const template = await createCustomExercise(name);
+			const template = await withRetry(
+				() => createCustomExercise(name),
+				`create custom exercise "${name}"`,
+			);
 			exerciseMapping.set(name, {
 				csvName: name,
 				templateId: template.id,
@@ -529,7 +582,6 @@ async function main() {
 				matchScore: 1,
 				isCustom: true,
 			});
-			await sleep(200); // Rate limiting
 		}
 	}
 
@@ -574,13 +626,16 @@ async function main() {
 
 		if (!folder) {
 			console.log("   Creating folder...");
-			const response = await apiPost<{
-				routine_folder: { id: number; title: string };
-			}>("/routine_folders", { routine_folder: { title: folderTitle } });
+			const response = await withRetry(
+				() =>
+					apiPost<{
+						routine_folder: { id: number; title: string };
+					}>("/routine_folders", { routine_folder: { title: folderTitle } }),
+				`create folder "${folderTitle}"`,
+			);
 			folder = response.routine_folder;
 			existingFolders.push(folder);
 			foldersCreated++;
-			await sleep(200);
 		} else {
 			console.log("   Folder already exists");
 		}
@@ -644,26 +699,31 @@ async function main() {
 			if (existingRoutine) {
 				console.log("      Updating existing routine...");
 				// PUT doesn't allow folder_id
-				await apiPut(`/routines/${existingRoutine.id}`, {
-					routine: {
-						title: routineTitle,
-						notes: `Week ${week.weekNumber}`,
-						exercises,
-					},
-				});
+				await withRetry(
+					() =>
+						apiPut(`/routines/${existingRoutine.id}`, {
+							routine: {
+								title: routineTitle,
+								notes: `Week ${week.weekNumber}`,
+								exercises,
+							},
+						}),
+					`update routine "${routineTitle}"`,
+				);
 				routinesUpdated++;
 			} else {
 				console.log("      Creating new routine...");
-				const response = await apiPost<{ routine: { id: string } }>(
-					"/routines",
-					{
-						routine: {
-							title: routineTitle,
-							folder_id: folder.id,
-							notes: `Week ${week.weekNumber}`,
-							exercises,
-						},
-					},
+				const response = await withRetry(
+					() =>
+						apiPost<{ routine: { id: string } }>("/routines", {
+							routine: {
+								title: routineTitle,
+								folder_id: folder.id,
+								notes: `Week ${week.weekNumber}`,
+								exercises,
+							},
+						}),
+					`create routine "${routineTitle}"`,
 				);
 				existingRoutines.push({
 					id: response.routine.id,
@@ -672,7 +732,6 @@ async function main() {
 				});
 				routinesCreated++;
 			}
-			await sleep(200);
 		}
 	}
 
