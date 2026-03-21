@@ -642,7 +642,9 @@ async function main() {
 
 		// Create routines for each day
 		for (const day of week.days) {
-			const routineTitle = day.dayName;
+			const routineTitle = `Week ${week.weekNumber} - ${day.dayName}`;
+			// TODO: Remove old title matching once all weeks have been re-imported with new naming
+			const oldRoutineTitle = day.dayName;
 			console.log(`   📋 Processing routine: ${routineTitle}`);
 
 			// Build exercises array
@@ -691,9 +693,11 @@ async function main() {
 				continue;
 			}
 
-			// Check if routine exists in this folder
+			// Check if routine exists in this folder (match new or old title format)
 			const existingRoutine = existingRoutines.find(
-				(r) => r.title === routineTitle && r.folder_id === folder!.id,
+				(r) =>
+					(r.title === routineTitle || r.title === oldRoutineTitle) &&
+					r.folder_id === folder!.id,
 			);
 
 			if (existingRoutine) {
