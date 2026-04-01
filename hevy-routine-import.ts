@@ -20,7 +20,7 @@ import type {
 // Parse CLI arguments
 const args = process.argv.slice(2);
 const dryRun = args.includes("--dry-run");
-const deleteMode = args.includes("--delete");
+
 
 // Parse --week argument (supports --week=1, --week 1, --week=1-3, --week 1-3)
 let weekArg: string | undefined;
@@ -52,6 +52,21 @@ if (fromWeekEqualIdx !== -1) {
 	) {
 		fromWeekArg = args[fromWeekIdx + 1];
 	}
+}
+
+// Validate args — reject anything unrecognised
+const knownFlags = new Set(["--dry-run", "--week", "--from-week"]);
+const unknown = args.filter(
+	(a) =>
+		a.startsWith("--") &&
+		!knownFlags.has(a) &&
+		!a.startsWith("--week=") &&
+		!a.startsWith("--from-week="),
+);
+if (unknown.length > 0) {
+	console.error(`❌ Unknown argument(s): ${unknown.join(", ")}`);
+	console.error("   Valid flags: --dry-run, --week <n|n-n>, --from-week <n>");
+	process.exit(1);
 }
 
 let weekRange: [number, number] | null = null;
@@ -199,21 +214,6 @@ async function apiPut<T>(endpoint: string, body: unknown): Promise<T> {
 	return response.json();
 }
 
-async function apiDelete(endpoint: string): Promise<void> {
-	const response = await fetch(`${API_BASE}${endpoint}`, {
-		method: "DELETE",
-		headers: {
-			"api-key": API_KEY!,
-			"Content-Type": "application/json",
-		},
-	});
-	if (!response.ok) {
-		const error = await response.text();
-		throw new Error(
-			`API DELETE ${endpoint} failed: ${response.status} - ${error}`,
-		);
-	}
-}
 
 // Fetch all pages of exercise templates
 async function fetchAllExerciseTemplates(): Promise<HevyExerciseTemplate[]> {
@@ -501,102 +501,10 @@ async function main() {
 	if (dryRun) {
 		console.log("🔍 DRY RUN MODE - No changes will be made\n");
 	}
-	if (deleteMode) {
-		console.log("🗑️  DELETE MODE - Will delete routines and folders\n");
-	}
-	if (weekRange) {
+if (weekRange) {
 		console.log(`📅 Processing weeks ${weekRange[0]}-${weekRange[1]}\n`);
 	} else {
 		console.log("📅 Processing all weeks (1-15)\n");
-	}
-
-	// Handle --delete mode
-	if (deleteMode) {
-		console.log("📋 Fetching existing routines...");
-		const existingRoutines = await fetchAllRoutines();
-		console.log(`   Found ${existingRoutines.length} existing routines\n`);
-
-		console.log("📁 Fetching existing folders...");
-		const existingFolders = await fetchAllRoutineFolders();
-		console.log(`   Found ${existingFolders.length} existing folders\n`);
-
-		// Build list of folder titles to match (both old and new naming)
-		const targetWeeks: number[] = [];
-		if (weekRange) {
-			for (let w = weekRange[0]; w <= weekRange[1]; w++) {
-				targetWeeks.push(w);
-			}
-		} else {
-			for (let w = 1; w <= 15; w++) {
-				targetWeeks.push(w);
-			}
-		}
-
-		const folderTitlesToMatch = new Set<string>();
-		for (const w of targetWeeks) {
-			const label = getWeekLabel(w);
-			folderTitlesToMatch.add(`Week ${w} / 15 - (${label})`);
-			folderTitlesToMatch.add(`Week ${w} - ${PROGRAM_SUFFIX}`);
-		}
-
-		// Find matching folders
-		const foldersToDelete = existingFolders.filter((f) =>
-			folderTitlesToMatch.has(f.title),
-		);
-
-		// Find routines in those folders
-		const folderIds = new Set(foldersToDelete.map((f) => f.id));
-		const routinesToDelete = existingRoutines.filter(
-			(r) => r.folder_id !== null && folderIds.has(r.folder_id),
-		);
-
-		if (routinesToDelete.length === 0 && foldersToDelete.length === 0) {
-			console.log("   Nothing to delete.\n");
-			return;
-		}
-
-		console.log(`🗑️  Will delete ${routinesToDelete.length} routines and ${foldersToDelete.length} folders:\n`);
-		for (const f of foldersToDelete) {
-			const folderRoutines = routinesToDelete.filter((r) => r.folder_id === f.id);
-			console.log(`   📁 ${f.title}`);
-			for (const r of folderRoutines) {
-				console.log(`      📋 ${r.title}`);
-			}
-		}
-
-		if (dryRun) {
-			console.log("\n✅ Dry run complete. Use without --dry-run to execute.\n");
-			return;
-		}
-
-		// Delete routines first, then folders
-		let routinesDeleted = 0;
-		let foldersDeleted = 0;
-
-		for (const routine of routinesToDelete) {
-			console.log(`   🗑️  Deleting routine: ${routine.title}...`);
-			await withRetry(
-				() => apiDelete(`/routines/${routine.id}`),
-				`delete routine "${routine.title}"`,
-			);
-			routinesDeleted++;
-		}
-
-		for (const folder of foldersToDelete) {
-			console.log(`   🗑️  Deleting folder: ${folder.title}...`);
-			await withRetry(
-				() => apiDelete(`/routine_folders/${folder.id}`),
-				`delete folder "${folder.title}"`,
-			);
-			foldersDeleted++;
-		}
-
-		console.log("\n================================================");
-		console.log("✅ Delete complete!");
-		console.log(`   Routines deleted: ${routinesDeleted}`);
-		console.log(`   Folders deleted: ${foldersDeleted}`);
-		console.log("================================================\n");
-		return;
 	}
 
 	// Step 1: Parse CSV
