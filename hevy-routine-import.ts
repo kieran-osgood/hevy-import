@@ -81,7 +81,7 @@ if (!API_KEY && !dryRun) {
 
 // Rate limiting configuration
 const RATE_LIMIT = {
-	baseDelay: 1000, // 1 second between requests
+	baseDelay: 3000, // 3 seconds between requests
 	maxRetries: 5,
 	initialBackoff: 5000, // 5 seconds initial backoff on 429
 	backoffMultiplier: 2, // Double the wait time on each retry
