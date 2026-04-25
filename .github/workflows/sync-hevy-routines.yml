@@ -1,0 +1,78 @@
+name: Sync Hevy Routines
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Preview only, no API writes"
+        type: boolean
+        default: false
+      week:
+        description: "Single week (e.g. 5) or range (e.g. 5-7). Leave blank for all."
+        type: string
+        required: false
+      from_week:
+        description: "Run from this week through week 15. Ignored if 'week' is set."
+        type: string
+        required: false
+
+concurrency:
+  group: hevy-routine-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Validate inputs
+        env:
+          INPUT_WEEK: ${{ inputs.week }}
+          INPUT_FROM_WEEK: ${{ inputs.from_week }}
+        run: |
+          if [ -n "$INPUT_WEEK" ] && ! echo "$INPUT_WEEK" | grep -Eq '^[0-9]+(-[0-9]+)?$'; then
+            echo "::error::Invalid 'week' input: $INPUT_WEEK (expected '5' or '5-7')"
+            exit 1
+          fi
+          if [ -n "$INPUT_FROM_WEEK" ] && ! echo "$INPUT_FROM_WEEK" | grep -Eq '^[0-9]+$'; then
+            echo "::error::Invalid 'from_week' input: $INPUT_FROM_WEEK (expected integer)"
+            exit 1
+          fi
+
+      - name: Run import
+        env:
+          HEVY_API_KEY: ${{ secrets.HEVY_API_KEY }}
+          INPUT_DRY_RUN: ${{ inputs.dry_run }}
+          INPUT_WEEK: ${{ inputs.week }}
+          INPUT_FROM_WEEK: ${{ inputs.from_week }}
+        run: |
+          if [ -z "$HEVY_API_KEY" ]; then
+            echo "::error::HEVY_API_KEY secret is not set. Add it under repo Settings -> Secrets and variables -> Actions."
+            exit 1
+          fi
+
+          ARGS=()
+          if [ "$INPUT_DRY_RUN" = "true" ]; then
+            ARGS+=(--dry-run)
+          fi
+          if [ -n "$INPUT_WEEK" ]; then
+            ARGS+=(--week "$INPUT_WEEK")
+          elif [ -n "$INPUT_FROM_WEEK" ]; then
+            ARGS+=(--from-week "$INPUT_FROM_WEEK")
+          fi
+
+          echo "Running: tsx ./hevy-routine-import.ts ${ARGS[*]}"
+          pnpm exec tsx ./hevy-routine-import.ts "${ARGS[@]}"

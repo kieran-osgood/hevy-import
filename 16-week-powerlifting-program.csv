@@ -9,6 +9,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 1,B - Bench,Chest Dip,3,AMRAP,-,BW,,,Bodyweight
 1,B - Bench,Pec Deck,3,15,-,50,,,
 1,B - Bench,Tricep Extension (Cable),3,15,-,25,,,
+1,B - Bench,Cable Woodchop,3,12,-,20,,,Per side
 1,C - Deadlift,Deficit Deadlift (5cm),4,6,65%,117.5,,,"Stand on plate, control descent"
 1,C - Deadlift,Pull Up,4,AMRAP,-,BW,,,Rings or bar
 1,C - Deadlift,Seated Cable Row,3,12,-,60,,,
@@ -31,6 +32,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 2,B - Bench,Chest Dip,3,AMRAP,-,BW,,,
 2,B - Bench,Pec Deck,3,15,-,50,,,
 2,B - Bench,Tricep Extension (Cable),3,15,-,25,,,
+2,B - Bench,Cable Woodchop,3,12,-,20,,,Per side
 2,C - Deadlift,Deficit Deadlift (5cm),4,6,67%,120,,,
 2,C - Deadlift,Pull Up,4,AMRAP,-,BW,,,
 2,C - Deadlift,Seated Cable Row,3,12,-,60,,,
@@ -53,6 +55,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 3,B - Bench,Chest Dip,4,AMRAP,-,BW,,,
 3,B - Bench,Pec Deck,3,12,-,50,,,
 3,B - Bench,Tricep Extension (Cable),4,12,-,25,,,
+3,B - Bench,Cable Woodchop,3,12,-,22.5,,,Per side
 3,C - Deadlift,Deficit Deadlift (5cm),4,5,70%,125,,,
 3,C - Deadlift,Pull Up,4,AMRAP,-,BW,,,
 3,C - Deadlift,Seated Cable Row,4,10,-,60,,,
@@ -84,6 +87,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 5,B - Bench,Incline DB Press,3,8,-,26,,,
 5,B - Bench,Chest Dip,3,AMRAP,-,BW,,,
 5,B - Bench,Tricep Extension (Cable),3,12,-,25,,,
+5,B - Bench,Cable Woodchop,3,12,-,22.5,,,Per side
 5,C - Deadlift,Deadlift,5,5,75%,135,,,Competition style
 5,C - Deadlift,Deficit Deadlift (2.5cm),3,4,65%,117.5,,,Smaller deficit now
 5,C - Deadlift,Pull Up,4,AMRAP,-,BW,,,
@@ -106,6 +110,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 6,B - Bench,Incline DB Press,3,8,-,26,,,
 6,B - Bench,Chest Dip,3,AMRAP,-,BW,,,
 6,B - Bench,Tricep Extension (Cable),3,12,-,25,,,
+6,B - Bench,Cable Woodchop,3,12,-,22.5,,,Per side
 6,C - Deadlift,Deadlift,5,4,80%,145,,,
 6,C - Deadlift,Deficit Deadlift (2.5cm),3,3,70%,125,,,
 6,C - Deadlift,Pull Up,4,AMRAP,-,BW,,,
@@ -128,6 +133,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 7,B - Bench,Incline DB Press,3,6,-,26,,,
 7,B - Bench,Chest Dip,3,AMRAP,-,BW,,,
 7,B - Bench,Tricep Extension (Cable),3,10,-,25,,,
+7,B - Bench,Cable Woodchop,3,12,-,25,,,Per side
 7,C - Deadlift,Deadlift,4,3,85%,152.5,,,Heavy triples
 7,C - Deadlift,Paused Deadlift (below knee),3,3,70%,125,,,New variation
 7,C - Deadlift,Pull Up,4,AMRAP,-,BW,,,

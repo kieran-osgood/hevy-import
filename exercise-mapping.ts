@@ -93,6 +93,13 @@ export const CUSTOM_EXERCISES: Array<{
     secondaryMuscles: [],
   },
   {
+    title: "Cable Woodchop",
+    type: "weight_reps",
+    equipment: "cable",
+    primaryMuscle: "abs",
+    secondaryMuscles: ["other"],
+  },
+  {
     title: "Face Pull",
     type: "weight_reps",
     equipment: "cable",
