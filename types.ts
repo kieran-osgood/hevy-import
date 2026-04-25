@@ -66,7 +66,8 @@ export interface HevySet {
 export interface HevyRoutineExercise {
   exercise_template_id: string;
   superset_id: number | null;
-  notes: string;
+  rest_seconds?: number;
+  notes?: string;
   sets: HevySet[];
 }
 
