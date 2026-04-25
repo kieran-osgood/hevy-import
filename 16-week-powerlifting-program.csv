@@ -17,7 +17,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 1,D - Volume,Front Squat,3,8,50%,80,,,Core stability focus
 1,D - Volume,Romanian Deadlift,3,10,50%,90,,,Hamstring stretch
 1,D - Volume,Ring Dip,3,AMRAP,,BW,,,Tricep emphasis
-1,D - Volume,Ring Rollout,3,AMRAP,,BW,,,Extend from rings like ab wheel
+1,D - Volume,Cable Woodchop,3,12,-,20,,,Per side
 1,D - Volume,Inverted Row (Rings),3,12,-,BW,,,
 1,D - Volume,Single Arm Landmine Press,3,8-12,-,20,,,Per arm
 1,D - Volume,Face Pull,3,15,-,12,,,
@@ -39,7 +39,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 2,D - Volume,Front Squat,3,8,52%,82.5,,,
 2,D - Volume,Romanian Deadlift,3,10,52%,92.5,,,
 2,D - Volume,Ring Dip,3,AMRAP,,BW,,,
-2,D - Volume,Ring Rollout,3,AMRAP,,BW,,,Extend from rings like ab wheel
+2,D - Volume,Cable Woodchop,3,12,-,20,,,Per side
 2,D - Volume,Inverted Row (Rings),3,12,-,BW,,,
 2,D - Volume,Single Arm Landmine Press,3,8-12,-,20,,,Per arm
 2,D - Volume,Face Pull,3,15,-,12,,,
@@ -61,7 +61,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 3,D - Volume,Front Squat,3,6,55%,87.5,,,
 3,D - Volume,Romanian Deadlift,3,8,55%,100,,,
 3,D - Volume,Ring Dip,3,AMRAP,,BW,,,
-3,D - Volume,Ring Rollout,3,AMRAP,,BW,,,Extend from rings like ab wheel
+3,D - Volume,Cable Woodchop,3,12,-,22.5,,,Per side
 3,D - Volume,Inverted Row (Rings),4,10,-,BW,,,
 3,D - Volume,Single Arm Landmine Press,3,8-12,-,20,,,Per arm
 3,D - Volume,Face Pull,3,15,-,12,,,
@@ -78,7 +78,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 5,A - Squat,Pause Squat (2 sec),3,4,65%,102.5,,,Lighter variation work
 5,A - Squat,Leg Curl,3,12,-,40,,,
 5,A - Squat,Leg Extension,3,12,-,75,,,
-5,A - Squat,Cable Crunch,3,12,-,36,,,
+5,A - Squat,Hanging Leg Raise,3,12,-,BW,,,
 5,B - Bench,Bench Press,5,5,75%,77.5,,,Competition style
 5,B - Bench,"Spoto Press (1"" pause)",3,5,65%,67.5,,,Pause just off chest
 5,B - Bench,Incline DB Press,3,8,-,26,,,
@@ -89,10 +89,11 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 5,C - Deadlift,Pull Up,4,AMRAP,-,BW,,,
 5,C - Deadlift,Barbell Row,3,8,-,80,,,
 5,C - Deadlift,Barbell Curl,3,10,-,34,,,
+5,C - Deadlift,Cable Crunch,3,12,-,36,,,
 5,D - Volume,Front Squat,3,5,55%,87.5,,,
 5,D - Volume,Romanian Deadlift,3,8,55%,100,,,
 5,D - Volume,Ring Dip,3,AMRAP,,BW,,,
-5,D - Volume,Ring Rollout,3,AMRAP,,BW,,,Extend from rings like ab wheel
+5,D - Volume,Cable Woodchop,3,12,-,22.5,,,Per side
 5,D - Volume,Inverted Row (Rings),3,10,-,BW,,,
 5,D - Volume,Single Arm Landmine Press,3,8-12,-,20,,,Per arm
 5,D - Volume,Face Pull,3,15,-,12,,,
@@ -100,7 +101,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 6,A - Squat,Pause Squat (2 sec),3,3,70%,110,,,
 6,A - Squat,Leg Curl,3,12,-,40,,,
 6,A - Squat,Leg Extension,3,12,-,75,,,
-6,A - Squat,Cable Crunch,3,12,-,36,,,
+6,A - Squat,Hanging Leg Raise,3,12,-,BW,,,
 6,B - Bench,Bench Press,5,4,80%,82.5,,,
 6,B - Bench,"Spoto Press (1"" pause)",3,4,70%,72.5,,,
 6,B - Bench,Incline DB Press,3,8,-,26,,,
@@ -111,10 +112,11 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 6,C - Deadlift,Pull Up,4,AMRAP,-,BW,,,
 6,C - Deadlift,Barbell Row,3,8,-,80,,,
 6,C - Deadlift,Barbell Curl,3,10,-,34,,,
+6,C - Deadlift,Cable Crunch,3,12,-,36,,,
 6,D - Volume,Front Squat,3,5,57%,90,,,
 6,D - Volume,Romanian Deadlift,3,8,57%,102.5,,,
 6,D - Volume,Ring Dip,3,AMRAP,,BW,,,
-6,D - Volume,Ring Rollout,3,AMRAP,,BW,,,Extend from rings like ab wheel
+6,D - Volume,Cable Woodchop,3,12,-,22.5,,,Per side
 6,D - Volume,Inverted Row (Rings),3,10,-,BW,,,
 6,D - Volume,Single Arm Landmine Press,3,8-12,-,20,,,Per arm
 6,D - Volume,Face Pull,3,15,-,12,,,
@@ -122,7 +124,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 7,A - Squat,Pause Squat (2 sec),3,3,72%,112.5,,,
 7,A - Squat,Leg Curl,3,10,-,40,,,
 7,A - Squat,Leg Extension,3,10,-,75,,,
-7,A - Squat,Cable Crunch,3,12,-,36,,,
+7,A - Squat,Hanging Leg Raise,3,12,-,BW,,,
 7,B - Bench,Bench Press,4,3,85%,87.5,,,Heavy triples
 7,B - Bench,"Spoto Press (1"" pause)",3,3,72%,75,,,
 7,B - Bench,Incline DB Press,3,6,-,26,,,
@@ -133,10 +135,11 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 7,C - Deadlift,Pull Up,4,AMRAP,-,BW,,,
 7,C - Deadlift,Barbell Row,3,6,-,80,,,
 7,C - Deadlift,Barbell Curl,3,8,-,34,,,
+7,C - Deadlift,Cable Crunch,3,12,-,36,,,
 7,D - Volume,Front Squat,3,4,60%,95,,,
 7,D - Volume,Romanian Deadlift,3,6,60%,107.5,,,
 7,D - Volume,Ring Dip,3,AMRAP,,BW,,,
-7,D - Volume,Ring Rollout,3,AMRAP,,BW,,,Extend from rings like ab wheel
+7,D - Volume,Cable Woodchop,3,12,-,25,,,Per side
 7,D - Volume,Inverted Row (Rings),3,8,-,BW,,,
 7,D - Volume,Single Arm Landmine Press,3,8-12,-,20,,,Per arm
 7,D - Volume,Face Pull,3,12,-,12,,,
