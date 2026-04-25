@@ -728,6 +728,7 @@ if (weekRange) {
 				exercises.push({
 					exercise_template_id: mapping.templateId,
 					superset_id: null,
+					rest_seconds: exercises.length === 0 ? 120 : 45,
 					...(notes ? { notes } : {}),
 					sets,
 				});
