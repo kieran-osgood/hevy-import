@@ -725,10 +725,14 @@ if (weekRange) {
 					notes = notes ? `Easy reps - ${notes}` : "Easy reps";
 				}
 
+				// Compound lifts (have % TM) get 2 min rest, accessories get 45 sec
+				const isCompound = exercise.percentTm && exercise.percentTm !== "-";
+				const rest_seconds = isCompound ? 120 : 45;
+
 				exercises.push({
 					exercise_template_id: mapping.templateId,
 					superset_id: null,
-					rest_seconds: exercises.length === 0 ? 120 : 45,
+					rest_seconds,
 					...(notes ? { notes } : {}),
 					sets,
 				});
