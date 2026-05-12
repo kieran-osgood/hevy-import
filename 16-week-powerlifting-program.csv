@@ -1,4 +1,5 @@
 WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
+1,A - Squat,Single Leg Romanian Deadlift (Dumbbell),2,10,-,12,,,Per leg - hamstring prep
 1,A - Squat,Pause Squat (3 sec),4,8,65%,102.5,,,"Pause in hole, stay tight"
 1,A - Squat,Leg Press,3,12,-,166,,,Controlled tempo
 1,A - Squat,Leg Curl,3,12,-,40,,,
@@ -22,6 +23,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 1,D - Volume,Inverted Row (Rings),3,12,-,BW,,,
 1,D - Volume,Single Arm Landmine Press,3,8-12,-,20,,,Per arm
 1,D - Volume,Face Pull,3,15,-,12,,,
+2,A - Squat,Single Leg Romanian Deadlift (Dumbbell),2,10,-,12,,,Per leg - hamstring prep
 2,A - Squat,Pause Squat (3 sec),4,8,67%,105,,,+2% from last week
 2,A - Squat,Leg Press,3,12,-,166,,,
 2,A - Squat,Leg Curl,3,12,-,40,,,
@@ -45,6 +47,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 2,D - Volume,Inverted Row (Rings),3,12,-,BW,,,
 2,D - Volume,Single Arm Landmine Press,3,8-12,-,20,,,Per arm
 2,D - Volume,Face Pull,3,15,-,12,,,
+3,A - Squat,Single Leg Romanian Deadlift (Dumbbell),2,10,-,12,,,Per leg - hamstring prep
 3,A - Squat,Pause Squat (3 sec),4,6,70%,110,,,"Intensity up, reps down"
 3,A - Squat,Leg Press,4,10,-,166,,,
 3,A - Squat,Leg Curl,3,12,-,40,,,
@@ -68,6 +71,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 3,D - Volume,Inverted Row (Rings),4,10,-,BW,,,
 3,D - Volume,Single Arm Landmine Press,3,8-12,-,20,,,Per arm
 3,D - Volume,Face Pull,3,15,-,12,,,
+4,A - Squat (DELOAD),Single Leg Romanian Deadlift (Dumbbell),2,10,-,12,,,Per leg - hamstring prep
 4,A - Squat (DELOAD),Back Squat,3,5,50%,80,,,DELOAD - easy movement
 4,A - Squat (DELOAD),Leg Extension,2,12,-,75,,,Light
 4,A - Squat (DELOAD),Hanging Leg Raise,2,10,-,BW,,,
@@ -77,6 +81,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 4,C - Deadlift (DELOAD),Deadlift,3,5,50%,90,,,DELOAD - crisp reps
 4,C - Deadlift (DELOAD),Pull Up,2,Easy,-,BW,,,
 4,C - Deadlift (DELOAD),Cable Row,2,12,-,60,,,Light
+5,A - Squat,Single Leg Romanian Deadlift (Dumbbell),2,10,-,12,,,Per leg - hamstring prep
 5,A - Squat,Back Squat,5,5,75%,117.5,,,Competition style
 5,A - Squat,Pause Squat (2 sec),3,4,65%,102.5,,,Lighter variation work
 5,A - Squat,Leg Curl,3,12,-,40,,,
@@ -100,6 +105,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 5,D - Volume,Inverted Row (Rings),3,10,-,BW,,,
 5,D - Volume,Single Arm Landmine Press,3,8-12,-,20,,,Per arm
 5,D - Volume,Face Pull,3,15,-,12,,,
+6,A - Squat,Single Leg Romanian Deadlift (Dumbbell),2,10,-,12,,,Per leg - hamstring prep
 6,A - Squat,Back Squat,5,4,80%,125,,,+5% intensity
 6,A - Squat,Pause Squat (2 sec),3,3,70%,110,,,
 6,A - Squat,Leg Curl,3,12,-,40,,,
@@ -123,6 +129,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 6,D - Volume,Inverted Row (Rings),3,10,-,BW,,,
 6,D - Volume,Single Arm Landmine Press,3,8-12,-,20,,,Per arm
 6,D - Volume,Face Pull,3,15,-,12,,,
+7,A - Squat,Single Leg Romanian Deadlift (Dumbbell),2,10,-,12,,,Per leg - hamstring prep
 7,A - Squat,Back Squat,4,3,85%,135,,,Heavy triples
 7,A - Squat,Pause Squat (2 sec),3,3,72%,112.5,,,
 7,A - Squat,Leg Curl,3,10,-,40,,,
@@ -146,6 +153,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 7,D - Volume,Inverted Row (Rings),3,8,-,BW,,,
 7,D - Volume,Single Arm Landmine Press,3,8-12,-,20,,,Per arm
 7,D - Volume,Face Pull,3,12,-,12,,,
+8,A - Squat (DELOAD),Single Leg Romanian Deadlift (Dumbbell),2,10,-,12,,,Per leg - hamstring prep
 8,A - Squat (DELOAD),Back Squat,3,3,60%,95,,,DELOAD - speed work
 8,A - Squat (DELOAD),Leg Extension,2,12,-,75,,,Light
 8,A - Squat (DELOAD),Cable Crunch,2,10,-,36,,,
@@ -155,6 +163,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 8,C - Deadlift (DELOAD),Deadlift,3,3,60%,107.5,,,DELOAD - snap off floor
 8,C - Deadlift (DELOAD),Pull Up,2,Easy,-,BW,,,
 8,C - Deadlift (DELOAD),Cable Row,2,12,-,60,,,Light
+9,A - Squat,Single Leg Romanian Deadlift (Dumbbell),2,10,-,12,,,Per leg - hamstring prep
 9,A - Squat,Back Squat,4,3,87%,137.5,,,Peaking begins
 9,A - Squat,Pause Squat (1 sec),2,2,75%,117.5,,,Brief pause only
 9,A - Squat,Leg Extension,2,10,-,75,,,Reduced accessories
@@ -172,6 +181,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 9,D - Volume,Inverted Row (Rings),2,10,-,BW,,,
 9,D - Volume,Single Arm Landmine Press,2,8-12,-,20,,,Per arm
 9,D - Volume,Face Pull,2,15,-,12,,,
+10,A - Squat,Single Leg Romanian Deadlift (Dumbbell),2,10,-,12,,,Per leg - hamstring prep
 10,A - Squat,Back Squat,3,2,90%,142.5,,,Heavy doubles
 10,A - Squat,Back Squat (backoff),2,4,75%,117.5,,,
 10,A - Squat,Leg Extension,2,10,-,75,,,
@@ -184,6 +194,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 10,D - Volume,Light Squat,2,5,50%,80,,,Recovery work
 10,D - Volume,Light Bench,2,5,50%,52.5,,,
 10,D - Volume,Face Pull,2,15,-,12,,,
+11,A - Squat,Single Leg Romanian Deadlift (Dumbbell),2,10,-,12,,,Per leg - hamstring prep
 11,A - Squat,Back Squat,2,1,95%,150,,,Heavy singles - opener practice
 11,A - Squat,Back Squat (backoff),2,3,80%,125,,,
 11,A - Squat,Leg Extension,2,10,-,75,,,
@@ -193,29 +204,33 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 11,C - Deadlift,Deadlift,2,1,95%,170,,,Heavy singles
 11,C - Deadlift,Deadlift (backoff),2,3,80%,145,,,
 11,C - Deadlift,Pull Up,2,Easy,-,BW,,,
+12,A - Squat (DELOAD),Single Leg Romanian Deadlift (Dumbbell),2,10,-,12,,,Per leg - hamstring prep
 12,A - Squat (DELOAD),Back Squat,2,2,70%,110,,,DELOAD - stay sharp
 12,A - Squat (DELOAD),Light accessories only,-,-,-,Select,,,
 12,B - Bench (DELOAD),Bench Press,2,2,70%,72.5,,,DELOAD
 12,B - Bench (DELOAD),Light accessories only,-,-,-,Select,,,
 12,C - Deadlift (DELOAD),Deadlift,2,2,70%,125,,,DELOAD
 12,C - Deadlift (DELOAD),Light accessories only,-,-,-,Select,,,
+13,A - Squat,Single Leg Romanian Deadlift (Dumbbell),2,10,-,12,,,Per leg - hamstring prep
 13,A - Squat,Back Squat,1,1,100%,157.5,,,Work up to Training Max
 13,A - Squat,Back Squat (backoff),2,3,75%,117.5,,,
 13,B - Bench,Bench Press,1,1,100%,102.5,,,Work up to Training Max
 13,B - Bench,Bench Press (backoff),2,3,75%,77.5,,,
 13,C - Deadlift,Deadlift,1,1,100%,180,,,Work up to Training Max
 13,C - Deadlift,Deadlift (backoff),2,3,75%,135,,,
+14,A - Squat (TEST),Single Leg Romanian Deadlift (Dumbbell),2,10,-,12,,,Per leg - hamstring prep
 14,A - Squat (TEST),Back Squat - NEW 1RM,1,1,103%,162.5,,,*** PR ATTEMPT *** Work up in singles
 14,A - Squat (TEST),Optional: 2nd attempt,1,1,106%,167.5,,,Only if first felt easy
 14,B - Bench (TEST),Bench Press - NEW 1RM,1,1,103%,107.5,,,*** PR ATTEMPT ***
 14,B - Bench (TEST),Optional: 2nd attempt,1,1,106%,110,,,Only if first felt easy
 14,C - Deadlift (TEST),Deadlift - NEW 1RM,1,1,103%,185,,,*** PR ATTEMPT ***
 14,C - Deadlift (TEST),Optional: 2nd attempt,1,1,106%,190,,,Only if first felt easy
-15,A - Recovery,Light Squat,3,5,50%,80,,,Active recovery week
-15,A - Recovery,Light accessories,-,-,-,Select,,,
-15,B - Recovery,Light Bench,3,5,50%,52.5,,,
-15,B - Recovery,Light accessories,-,-,-,Select,,,
-15,C - Recovery,Light Deadlift,3,5,50%,90,,,
-15,C - Recovery,Light accessories,-,-,-,Select,,,
+15,A - Squat,Single Leg Romanian Deadlift (Dumbbell),2,10,-,12,,,Per leg - hamstring prep
+15,A - Squat,Light Squat,3,5,50%,80,,,Active recovery week
+15,A - Squat,Light accessories,-,-,-,Select,,,
+15,B - Bench,Light Bench,3,5,50%,52.5,,,
+15,B - Bench,Light accessories,-,-,-,Select,,,
+15,C - Deadlift,Light Deadlift,3,5,50%,90,,,
+15,C - Deadlift,Light accessories,-,-,-,Select,,,
 16,NOTES,UPDATE TRAINING MAXES,-,-,-,Select,,,Add 2.5-5kg to successful lifts
 16,NOTES,Begin next 16-week cycle,-,-,-,Select,,,Use new TMs on Setup sheet
