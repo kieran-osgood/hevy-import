@@ -215,7 +215,7 @@ export const CUSTOM_EXERCISES: Array<{
 
 // Explicit mappings for exercises that have different names in Hevy
 const EXPLICIT_MAPPINGS: Record<string, string> = {
-  "Back Squat": "Barbell Squat",
+  "Back Squat": "Squat (Barbell)",
   "Bench Press": "Bench Press (Barbell)",
   Deadlift: "Deadlift (Barbell)",
   "Romanian Deadlift": "Romanian Deadlift (Barbell)",
@@ -235,6 +235,7 @@ const EXPLICIT_MAPPINGS: Record<string, string> = {
   "Single Arm Landmine Press": "Single Arm Landmine Press",
   "Ring Dip": "Ring Dip",
   "Ring Rollout": "Ring Rollout",
+  "Single Leg Romanian Deadlift (Dumbbell)": "Single Leg Romanian Deadlift (Dumbbell)",
 };
 
 export function buildExerciseMapping(

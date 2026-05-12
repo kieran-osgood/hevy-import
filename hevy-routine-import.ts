@@ -769,9 +769,10 @@ if (weekRange) {
 				routinesUpdated++;
 			} else {
 				console.log("      Creating new routine...");
+				// Hevy API returns { routine: [{ id, title, ... }] } — array, not object
 				const response = await withRetry(
 					() =>
-						apiPost<{ routine: { id: string } }>("/routines", {
+						apiPost<{ routine: Array<{ id: string }> }>("/routines", {
 							routine: {
 								title: routineTitle,
 								folder_id: folder.id,
@@ -781,8 +782,14 @@ if (weekRange) {
 						}),
 					`create routine "${routineTitle}"`,
 				);
+				const newId = response.routine?.[0]?.id;
+				if (!newId) {
+					throw new Error(
+						`Routine created but couldn't extract id from response: ${JSON.stringify(response)}`,
+					);
+				}
 				existingRoutines.push({
-					id: response.routine.id,
+					id: newId,
 					title: routineTitle,
 					folder_id: folder.id,
 				});
