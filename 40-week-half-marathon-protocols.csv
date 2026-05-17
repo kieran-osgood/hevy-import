@@ -1,0 +1,68 @@
+phase,phase_name,protocol_type,order,exercise,sets_reps_duration,notes
+1,Foundation,pre_run_warmup,1,McGill Bird Dog,3x10 each side,Already doing as part of gym warmup — carry over to run days
+1,Foundation,pre_run_warmup,2,McGill Dead Bug,3x10 each side,Already doing as part of gym warmup — carry over to run days
+1,Foundation,pre_run_warmup,3,McGill Side Plank,3x20-30s each side,Already doing as part of gym warmup — carry over to run days
+1,Foundation,pre_run_warmup,4,Glute Bridges,3x15,Focus on full hip extension at top — squeeze glutes hard
+1,Foundation,pre_run_warmup,5,Clamshells,3x15 each side,Control the movement — avoid hip rotation
+1,Foundation,pre_run_warmup,6,Ankle Circles + Heel Raises,2x20,Critical for barefoot adaptation — slow and controlled
+1,Foundation,pre_run_warmup,7,Hip Flexor Stretch,60s each side,Targets butt wink root cause — hold and breathe
+1,Foundation,pre_run_warmup,8,Leg Swings,10 each direction each side,Forward and lateral — dynamic not static
+1,Foundation,post_run_cooldown,1,Calf Stretch (Gastrocnemius),90s each side,Straight leg — heel pressed into ground
+1,Foundation,post_run_cooldown,2,Calf Stretch (Soleus),90s each side,Bent knee — targets deeper calf and Achilles
+1,Foundation,post_run_cooldown,3,Hip Flexor Stretch,60s each side,Hold longer after runs than pre-run
+1,Foundation,post_run_cooldown,4,Glute Stretch,60s each side,Figure four or pigeon position
+1,Foundation,post_run_cooldown,5,Foot Rolling,2 mins each foot,Use a massage ball — cover arch; ball of foot; heel
+1,Foundation,lifting_guidance,1,Squat Variation,None — avoid,Back still settling; do not load spinal flexion pattern
+1,Foundation,lifting_guidance,2,Deadlift Variation,None — avoid,Back still settling
+1,Foundation,lifting_guidance,3,Step-Ups,3x12 each leg,Shallow box — single leg loading without spinal load
+1,Foundation,lifting_guidance,4,Split Squats (Bulgarian),3x10 each leg at shallow depth,Rear foot elevated — keep front shin vertical
+1,Foundation,lifting_guidance,5,Hip Thrust / Glute Bridge Loaded,3x12,Progress from bodyweight to loaded as back allows
+1,Foundation,lifting_guidance,6,Upper Body,As normal,Bench; shoulder press; ring dips; ring rollouts — all fine
+2,Base Building,pre_run_warmup,1,McGill Big 3,As per Phase 1,Continue throughout all phases
+2,Base Building,pre_run_warmup,2,Single-Leg Glute Bridges,3x12 each side,Progress from double-leg in Phase 1 — harder activation
+2,Base Building,pre_run_warmup,3,Banded Lateral Walks,2x20 steps each direction,Loop band above knees — stay low and controlled
+2,Base Building,pre_run_warmup,4,Dynamic Hip Flexor Lunge with Reach,10 each side,Forward lunge; reach opposite arm overhead — opens hip and thoracic
+2,Base Building,pre_run_warmup,5,Ankle Dorsiflexion Wall Mobilisation,2x30s each,Knee over toe toward wall — addresses butt wink and barefoot mechanics
+2,Base Building,pre_run_warmup,6,Leg Swings,10 each direction each side,Forward and lateral
+2,Base Building,pre_run_warmup,7,Easy jog,2 mins very easy,Before picking up any pace — especially before tempo runs
+2,Base Building,post_run_cooldown,1,Calf + Achilles Stretch,90s each variation each side,Both gastrocnemius and soleus — critical as volume increases
+2,Base Building,post_run_cooldown,2,IT Band / Glute Stretch,60s each side,Pigeon or cross-body glute stretch
+2,Base Building,post_run_cooldown,3,Hip Flexor Stretch,60s each side,Hold longer after long runs
+2,Base Building,post_run_cooldown,4,Foot Rolling,2 mins each foot,Prioritise after long runs
+2,Base Building,post_run_cooldown,5,Walk (after long runs only),10 mins,Do not stop abruptly after long runs — walk to cool down
+2,Base Building,lifting_guidance,1,Goblet Squat,3x10 — introduce week 9-10 if back clear,Start shallow; increase depth as ankle mobility and hip flexors improve
+2,Base Building,lifting_guidance,2,Romanian Deadlift,3x10 — prioritise before returning to conventional DL,Hip hinge pattern — lighter load; focus on hamstring stretch
+2,Base Building,lifting_guidance,3,Conventional Deadlift,Reintroduce from week 14-16 if RDL pain-free,Go slower than feels necessary — reset before each rep
+2,Base Building,lifting_guidance,4,Back Squat,Reintroduce from week 12-14 if goblet squats pain-free,Reduce depth initially; brace hard; consider heel elevation if ankle mobility limited
+2,Base Building,lifting_guidance,5,Upper Body,As normal,All pressing and pulling movements fine throughout
+2,Base Building,lifting_guidance,6,Volume adjustment,Drop one lifting session to maintenance from month 5,As running volume climbs — total load management is critical
+3,Race Specific,pre_run_warmup,1,McGill Big 3,As per previous phases,Continue throughout
+3,Race Specific,pre_run_warmup,2,Single-Leg Glute Bridges,3x12 each side,Maintaining posterior chain activation
+3,Race Specific,pre_run_warmup,3,Banded Clamshells + Lateral Walks,2x15 + 2x20 steps,Hip abductor strength supports knee tracking at race pace
+3,Race Specific,pre_run_warmup,4,A-Skips,2x20m,Improves running mechanics and cadence — exaggerated knee drive
+3,Race Specific,pre_run_warmup,5,B-Skips,2x20m,Extension of A-skip with leg extension — reinforces cycle mechanics
+3,Race Specific,pre_run_warmup,6,Strides before race pace sessions,4x100m building to race pace,Not sprinting — controlled acceleration to 5:35/km then decelerate
+3,Race Specific,pre_run_warmup,7,Dynamic hip and ankle mobility,As per previous phases,Continue all mobility work
+3,Race Specific,post_run_cooldown,1,Full lower body stretch circuit,10-15 mins,More thorough than earlier phases — volume demands it
+3,Race Specific,post_run_cooldown,2,Foam Roll Quads,2 mins each,Patellar tracking support — quad tightness affects knee
+3,Race Specific,post_run_cooldown,3,Foam Roll IT Band,2 mins each side,Lateral knee and hip — common issue as long run distances peak
+3,Race Specific,post_run_cooldown,4,Foam Roll Calves,2 mins each side,Especially after race pace sessions
+3,Race Specific,post_run_cooldown,5,Foot Rolling,2 mins each foot,Blister prevention — maintain tissue health
+3,Race Specific,post_run_cooldown,6,Cold water foot soak (if blisters flare),10-15 mins,Optional — for blister and inflammation management
+3,Race Specific,lifting_guidance,1,Lower body lifting,Maximum 1x per week — maintenance only,Treat as strength retention not development
+3,Race Specific,lifting_guidance,2,Back Squat,1x per week if doing lower body,Reduce to 3x5 at moderate weight — maintenance focus
+3,Race Specific,lifting_guidance,3,Deadlift,1x per week if doing lower body,As above — not the time for PRs
+3,Race Specific,lifting_guidance,4,Single-leg accessories,Continue — supports running mechanics,Step-ups; split squats; single-leg RDL
+3,Race Specific,lifting_guidance,5,Upper Body,2 full sessions per week,Bench; shoulder press; ring dips; ring rollouts all fine
+3,Race Specific,lifting_guidance,6,Scheduling rule,Never heavy lower body day before race pace run,Fatigue from squats/DL compromises form at fast pace — risk of injury
+4,Taper,pre_run_warmup,1,McGill Big 3,Lighter version — as per previous phases,Continue for back protection
+4,Taper,pre_run_warmup,2,Dynamic mobility,Abbreviated version of Phase 3 warm-up,10 mins total — don't skip but don't over-extend
+4,Taper,pre_run_warmup,3,Race morning warm-up,15 min easy jog 30-45 mins before start,Do this before the race — do not stand cold at start line
+4,Taper,pre_run_warmup,4,Race morning strides,4x100m at race pace after easy jog,Prime neuromuscular system — legs should feel sharp
+4,Taper,post_run_cooldown,1,Race day: walk before stopping,10-15 mins walk after finishing,Do not stop immediately — flush legs
+4,Taper,post_run_cooldown,2,Full stretch when cooled,As per Phase 3,Take time to stretch properly after race
+4,Taper,lifting_guidance,1,Weeks 37-38,Upper body only — no lower body,Maintain upper body strength without leg fatigue
+4,Taper,lifting_guidance,2,Weeks 39-40,No lifting,Complete rest — prioritise sleep; nutrition; hydration
+4,Taper,lifting_guidance,3,Race week nutrition,Increase carbohydrate intake from Wednesday,Carb loading — pasta; rice; oats — nothing new or unusual
+4,Taper,lifting_guidance,4,Race week sleep,Prioritise 8hrs from Monday of race week,Sleep debt in final days cannot be fully recovered
+4,Taper,lifting_guidance,5,Race day shoes and kit,Nothing new — all proven in training,No new shoes; no new socks; no new nutrition products on race day
