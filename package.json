@@ -3,7 +3,10 @@
 	"version": "1.0.0",
 	"type": "module",
 	"scripts": {
-		"start": "node --env-file=.env --import=tsx ./hevy-routine-import.ts"
+		"start": "node --env-file=.env --import=tsx ./hevy-routine-import.ts",
+		"start:powerlifting": "node --env-file=.env --import=tsx ./hevy-routine-import.ts --program powerlifting",
+		"start:half-marathon": "node --env-file=.env --import=tsx ./hevy-routine-import.ts --program half-marathon",
+		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
 		"csv-parse": "^5.5.6",
