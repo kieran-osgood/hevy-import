@@ -1,4 +1,7 @@
-import { buildPowerliftingPlan } from "./programs/powerlifting.js";
+import {
+  buildPowerliftingPlan,
+  POWERLIFTING_CONFIGS,
+} from "./programs/powerlifting.js";
 import { buildHalfMarathonPlan } from "./programs/half-marathon.js";
 import { syncRoutinePlan } from "./programs/sync.js";
 
@@ -16,9 +19,12 @@ function getFlagValue(flag: string): string | undefined {
 }
 
 const programArg = getFlagValue("--program") ?? "powerlifting";
-if (programArg !== "powerlifting" && programArg !== "half-marathon") {
+const isPowerlifting = programArg in POWERLIFTING_CONFIGS;
+if (!isPowerlifting && programArg !== "half-marathon") {
   console.error(
-    `❌ Unknown --program "${programArg}". Valid: powerlifting, half-marathon`
+    `❌ Unknown --program "${programArg}". Valid: ${Object.keys(
+      POWERLIFTING_CONFIGS
+    ).join(", ")}, half-marathon`
   );
   process.exit(1);
 }
@@ -75,7 +81,10 @@ async function main() {
   const plan =
     programArg === "half-marathon"
       ? await buildHalfMarathonPlan(weekRange)
-      : await buildPowerliftingPlan(weekRange);
+      : await buildPowerliftingPlan(
+          weekRange,
+          POWERLIFTING_CONFIGS[programArg]
+        );
 
   await syncRoutinePlan(plan, { dryRun });
 }
