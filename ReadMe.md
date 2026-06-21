@@ -9,11 +9,17 @@ Get api key from: https://hevy.com/settings?developer
 > --week 1`, not `pnpm start:half-marathon -- --week 1`).
 
 ```bash
-# Powerlifting (default — matches the original behaviour)
+# Powerlifting — `powerlifting` ALWAYS points at the latest phase (currently
+# Phase 2), so `pnpm start` is the safe "run the current program" default.
 pnpm start
 pnpm start:powerlifting --dry-run
 pnpm start:powerlifting --week 5
 pnpm start:powerlifting --week 1-3
+
+# Pin a specific phase explicitly (preserved for historical re-syncs):
+pnpm start:powerlifting-phase1 --dry-run   # original block
+pnpm start:powerlifting-phase2 --week 1    # rebuild & push (DL 190, Bench 115,
+                                           # high-bar squat 120 + BSS)
 
 # Half marathon (40 weeks, 3 runs/week, with warmup + cooldown protocols)
 pnpm start:half-marathon --dry-run
@@ -21,7 +27,11 @@ pnpm start:half-marathon --week 1
 pnpm start:half-marathon --from-week 9
 ```
 
-`--program <powerlifting|half-marathon>` selects which CSV to import. Each
+`--program <powerlifting|powerlifting-phase1|powerlifting-phase2|half-marathon>`
+selects which CSV to import. The bare **`powerlifting`** key is an alias for the
+latest phase (set by `LATEST_POWERLIFTING_CONFIG` in `programs/powerlifting.ts`),
+so the default workflow never accidentally syncs an old plan; the numbered
+`powerlifting-phaseN` keys stay available for deliberate historical runs. Each
 program creates one Hevy routine folder per week and one routine per session
 (per day for powerlifting; per run for half marathon). Half marathon routines
 preload the Hevy "Running" exercise with the planned distance and bracket it
@@ -33,6 +43,8 @@ API rate limits.
 ### CI (GitHub Actions)
 
 The **Sync Hevy Routines** workflow runs the import via `workflow_dispatch`.
-Pick the **program** (`powerlifting` or `half-marathon`) from the dropdown and
-optionally set `week` / `from_week`; `HEVY_API_KEY` comes from repo secrets.
+Pick the **program** from the dropdown — leave it on the default `powerlifting`
+to sync the latest phase, or choose `powerlifting-phase1` /
+`powerlifting-phase2` / `half-marathon` explicitly — and optionally set
+`week` / `from_week`; `HEVY_API_KEY` comes from repo secrets.
 </content>
