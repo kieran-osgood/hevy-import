@@ -5,6 +5,8 @@
 	"scripts": {
 		"start": "node --env-file=.env --import=tsx ./hevy-routine-import.ts",
 		"start:powerlifting": "node --env-file=.env --import=tsx ./hevy-routine-import.ts --program powerlifting",
+		"start:powerlifting-phase1": "node --env-file=.env --import=tsx ./hevy-routine-import.ts --program powerlifting-phase1",
+		"start:powerlifting-phase2": "node --env-file=.env --import=tsx ./hevy-routine-import.ts --program powerlifting-phase2",
 		"start:half-marathon": "node --env-file=.env --import=tsx ./hevy-routine-import.ts --program half-marathon",
 		"typecheck": "tsc --noEmit"
 	},
