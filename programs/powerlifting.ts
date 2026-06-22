@@ -12,11 +12,41 @@ import type {
   RoutinePlan,
 } from "../types.js";
 
-const CSV_PATH = new URL(
-  "../16-week-powerlifting-program.csv",
-  import.meta.url
-);
-const PROGRAM_SUFFIX = "15 Week Periodized Program";
+export interface PowerliftingConfig {
+  /** CSV filename relative to the repo root (resolved against this module). */
+  csvFile: string;
+  /** Human-readable label used for logging / plan metadata. */
+  programLabel: string;
+  /** Suffix used to build the legacy ("old") folder/routine alternate titles. */
+  programSuffix: string;
+}
+
+const PHASE1_CONFIG: PowerliftingConfig = {
+  csvFile: "../16-week-powerlifting-phase1.csv",
+  // NOTE: suffix preserved from the original program so the importer still
+  // matches/updates the Hevy folders this phase originally created.
+  programLabel: "PL Program - P1",
+  programSuffix: "15 Week Periodized Program",
+};
+
+const PHASE2_CONFIG: PowerliftingConfig = {
+  csvFile: "../16-week-powerlifting-phase2.csv",
+  programLabel: "PL Program - P2",
+  programSuffix: "Phase 2 - Rebuild and Push",
+};
+
+// The "current" phase. Bump this pointer when a new phase is added — the bare
+// `powerlifting` key (and `pnpm start`) always follow it, so the default path
+// is the latest program and old phases are only run when named explicitly.
+const LATEST_POWERLIFTING_CONFIG = PHASE2_CONFIG;
+
+export const POWERLIFTING_CONFIGS: Record<string, PowerliftingConfig> = {
+  // Bare key = latest phase (safe default; avoids accidentally syncing an old plan).
+  powerlifting: LATEST_POWERLIFTING_CONFIG,
+  // Explicit pinned phases, preserved for historical re-syncs.
+  "powerlifting-phase1": PHASE1_CONFIG,
+  "powerlifting-phase2": PHASE2_CONFIG,
+};
 
 // 4-week Light/Medium/Heavy/Deload cycle, then test weeks
 function getWeekLabel(weekNum: number): string {
@@ -32,10 +62,10 @@ function cleanDayName(dayName: string): string {
   return dayName.replace(/\s*\((?:DELOAD|TEST)\)\s*$/, "");
 }
 
-async function parseCsv(): Promise<CsvRow[]> {
+async function parseCsv(csvUrl: URL): Promise<CsvRow[]> {
   return new Promise((resolve, reject) => {
     const rows: CsvRow[] = [];
-    createReadStream(CSV_PATH)
+    createReadStream(csvUrl)
       .pipe(parse({ columns: true, skip_empty_lines: true }))
       .on("data", (row: CsvRow) => rows.push(row))
       .on("end", () => resolve(rows))
@@ -140,10 +170,12 @@ function buildSets(exercise: ParsedExercise): HevySet[] {
 }
 
 export async function buildPowerliftingPlan(
-  weekRange: [number, number] | null
+  weekRange: [number, number] | null,
+  config: PowerliftingConfig = PHASE1_CONFIG
 ): Promise<RoutinePlan> {
-  console.log("📄 Parsing powerlifting CSV...");
-  const csvRows = await parseCsv();
+  const csvUrl = new URL(config.csvFile, import.meta.url);
+  console.log(`📄 Parsing powerlifting CSV (${config.programLabel})...`);
+  const csvRows = await parseCsv(csvUrl);
   console.log(`   Found ${csvRows.length} rows\n`);
 
   console.log("📊 Grouping exercises by week and day...");
@@ -166,7 +198,7 @@ export async function buildPowerliftingPlan(
   for (const week of weeks) {
     const weekLabel = getWeekLabel(week.weekNumber);
     const folderTitle = `Week ${week.weekNumber} / 15 - (${weekLabel})`;
-    const oldFolderTitle = `Week ${week.weekNumber} - ${PROGRAM_SUFFIX}`;
+    const oldFolderTitle = `Week ${week.weekNumber} - ${config.programSuffix}`;
 
     const routines: PlannedRoutine[] = [];
     for (const day of week.days) {
@@ -217,7 +249,7 @@ export async function buildPowerliftingPlan(
   }
 
   return {
-    programLabel: "16 Week Powerlifting Program",
+    programLabel: config.programLabel,
     uniqueExerciseNames,
     folders,
   };

@@ -4,10 +4,12 @@ on:
   workflow_dispatch:
     inputs:
       program:
-        description: "Which program to import"
+        description: "Which program to import ('powerlifting' = latest phase)"
         type: choice
         options:
           - powerlifting
+          - powerlifting-phase1
+          - powerlifting-phase2
           - half-marathon
         default: powerlifting
       dry_run:
