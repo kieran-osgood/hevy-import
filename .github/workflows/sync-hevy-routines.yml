@@ -8,7 +8,6 @@ on:
         type: choice
         options:
           - powerlifting
-          - powerlifting-phase1
           - powerlifting-phase2
           - half-marathon
         default: powerlifting

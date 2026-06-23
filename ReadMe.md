@@ -51,7 +51,9 @@ review before syncing.
 
 The **Sync Hevy Routines** workflow runs the import via `workflow_dispatch`.
 Pick the **program** from the dropdown — leave it on the default `powerlifting`
-to sync the latest phase, or choose `powerlifting-phase1` /
-`powerlifting-phase2` / `half-marathon` explicitly — and optionally set
-`week` / `from_week`; `HEVY_API_KEY` comes from repo secrets.
+to sync the latest phase, or choose `powerlifting-phase2` / `half-marathon`
+explicitly — and optionally set `week` / `from_week`; `HEVY_API_KEY` comes from
+repo secrets. Phase 1 remains archived in the repo for local historical runs,
+but is intentionally not available from workflow dispatch to avoid syncing an
+old routine by mistake.
 </content>
