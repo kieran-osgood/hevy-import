@@ -8,7 +8,7 @@
 		"start:powerlifting-phase1": "node --env-file=.env --import=tsx ./hevy-routine-import.ts --program powerlifting-phase1",
 		"start:powerlifting-phase2": "node --env-file=.env --import=tsx ./hevy-routine-import.ts --program powerlifting-phase2",
 		"start:half-marathon": "node --env-file=.env --import=tsx ./hevy-routine-import.ts --program half-marathon",
-		"build:site": "node --env-file=.env --import=tsx ./build-site.ts",
+		"build:site": "node --import=tsx ./build-site.ts",
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {

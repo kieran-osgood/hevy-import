@@ -1,3 +1,4 @@
+import { existsSync, readFileSync } from "node:fs";
 import { mkdir, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 
@@ -10,6 +11,26 @@ import {
 import type { RoutinePlan } from "./types.js";
 
 const SITE_DIR = "dist/site";
+
+function loadLocalEnvFileIfPresent() {
+  const envPath = resolve(".env");
+  if (!existsSync(envPath)) return;
+
+  for (const line of readFileSync(envPath, "utf8").split(/\r?\n/)) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("#")) continue;
+
+    const equalsIndex = trimmed.indexOf("=");
+    if (equalsIndex === -1) continue;
+
+    const key = trimmed.slice(0, equalsIndex).trim();
+    const rawValue = trimmed.slice(equalsIndex + 1).trim();
+    const value = rawValue.replace(/^['\"]|['\"]$/g, "");
+    process.env[key] ??= value;
+  }
+}
+
+loadLocalEnvFileIfPresent();
 
 interface SiteProgram {
   slug: string;
