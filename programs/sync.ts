@@ -1,3 +1,8 @@
+import { spawn } from "node:child_process";
+import { mkdir, writeFile } from "node:fs/promises";
+import { resolve } from "node:path";
+import { pathToFileURL } from "node:url";
+
 import {
   buildExerciseMapping,
   getCustomExerciseDefinition,
@@ -8,13 +13,14 @@ import type {
   HevyRoutineExercise,
   HevySet,
   RoutinePlan,
-  PlannedFolder,
   PlannedRoutine,
   ExerciseMapping,
 } from "../types.js";
 
 // API config (shared)
 const API_BASE = "https://api.hevyapp.com/v1";
+const LOW_CONFIDENCE_THRESHOLD = 0.8;
+const DRY_RUN_REPORT_DIR = "dry-run-reports";
 
 // Rate limiting configuration
 const RATE_LIMIT = {
@@ -317,7 +323,24 @@ export async function syncRoutinePlan(
   console.log(`   Found ${plan.folders.length} folders to process\n`);
 
   if (opts.dryRun) {
-    printDryRunSummary(plan);
+    const { exerciseMapping, templateCount, mappingError } =
+      await buildDryRunExerciseMapping(plan);
+
+    printDryRunSummary(plan, exerciseMapping, mappingError);
+
+    const reportPath = await writeDryRunHtmlReport(plan, {
+      exerciseMapping,
+      templateCount,
+      mappingError,
+    });
+    console.log(`📄 Dry run HTML report: ${reportPath}`);
+    const opened = await openFileInBrowser(reportPath);
+    if (opened) {
+      console.log("🌐 Opened dry run report in your browser.");
+    } else {
+      console.log("   Open it manually with the file path above.");
+    }
+    console.log("\n✅ Dry run complete. Use without --dry-run to execute.\n");
     return;
   }
 
@@ -362,9 +385,13 @@ export async function syncRoutinePlan(
   for (const [name, mapping] of exerciseMapping) {
     if (mapping.isCustom) {
       console.log(`   📝 ${name} → ${mapping.templateTitle} (custom)`);
+    } else if (mapping.matchScore < LOW_CONFIDENCE_THRESHOLD) {
+      console.log(
+        `   ⚠️  ${name} → ${mapping.templateTitle} (${Math.round(mapping.matchScore * 100)}% match; below ${Math.round(LOW_CONFIDENCE_THRESHOLD * 100)}%)`
+      );
     } else if (mapping.matchScore < 1) {
       console.log(
-        `   !  ${name} → ${mapping.templateTitle} (${Math.round(mapping.matchScore * 100)}% match)`
+        `   ~  ${name} → ${mapping.templateTitle} (${Math.round(mapping.matchScore * 100)}% match)`
       );
     } else {
       console.log(`   ✓ ${name} → ${mapping.templateTitle}`);
@@ -534,16 +561,182 @@ function buildHevyExercises(
   return out;
 }
 
-function printDryRunSummary(plan: RoutinePlan): void {
+interface DryRunMappingResult {
+  exerciseMapping?: Map<string, ExerciseMapping>;
+  templateCount?: number;
+  mappingError?: string;
+}
+
+interface ExerciseDisplayStatus {
+  icon: string;
+  label: string;
+  className: string;
+  matchedTitle: string;
+  confidence: string;
+  detail: string;
+  isWarning: boolean;
+}
+
+async function buildDryRunExerciseMapping(
+  plan: RoutinePlan
+): Promise<DryRunMappingResult> {
+  if (!process.env.HEVY_API_KEY) {
+    const message =
+      "HEVY_API_KEY is not set, so dry run cannot fetch your Hevy exercise list or score matches.";
+    console.log(`⚠️  ${message}`);
+    console.log("   Set HEVY_API_KEY to enable low-confidence match warnings.\n");
+    return { mappingError: message };
+  }
+
+  try {
+    console.log(
+      "📚 Fetching exercise templates from Hevy for dry-run match confidence..."
+    );
+    const templates = await fetchAllExerciseTemplates();
+    console.log(`   Found ${templates.length} existing templates\n`);
+    return {
+      exerciseMapping: buildExerciseMapping(
+        Array.from(plan.uniqueExerciseNames),
+        templates
+      ),
+      templateCount: templates.length,
+    };
+  } catch (error) {
+    const message = `Could not fetch Hevy exercise templates: ${(error as Error).message}`;
+    console.log(`⚠️  ${message}`);
+    console.log("   Continuing dry run without match confidence warnings.\n");
+    return { mappingError: message };
+  }
+}
+
+function isKnownCustomExercise(name: string): boolean {
+  return CUSTOM_EXERCISES.some(
+    (c) => c.title.toLowerCase() === name.toLowerCase()
+  );
+}
+
+function getExerciseDisplayStatus(
+  name: string,
+  mapping?: ExerciseMapping
+): ExerciseDisplayStatus {
+  const knownCustom = isKnownCustomExercise(name);
+
+  if (!mapping) {
+    return {
+      icon: knownCustom ? "📝" : "？",
+      label: knownCustom ? "Known custom" : "Not checked",
+      className: knownCustom ? "custom" : "unknown",
+      matchedTitle: knownCustom ? name : "—",
+      confidence: "—",
+      detail: knownCustom
+        ? "Listed in local custom exercise definitions."
+        : "No Hevy API exercise list was available during this dry run.",
+      isWarning: false,
+    };
+  }
+
+  if (mapping.templateId === "__NEEDS_CREATION__") {
+    return {
+      icon: knownCustom ? "📝" : "⚠️",
+      label: knownCustom ? "Will create custom" : "No Hevy match",
+      className: knownCustom ? "custom" : "warning",
+      matchedTitle: mapping.templateTitle,
+      confidence: "0%",
+      detail: knownCustom
+        ? "This is an intended local custom exercise."
+        : "No close Hevy exercise matched. The importer would create a generic custom exercise if synced.",
+      isWarning: !knownCustom,
+    };
+  }
+
+  const confidence = Math.round(mapping.matchScore * 100);
+  if (!mapping.isCustom && mapping.matchScore < LOW_CONFIDENCE_THRESHOLD) {
+    return {
+      icon: "⚠️",
+      label: "Low confidence",
+      className: "warning",
+      matchedTitle: mapping.templateTitle,
+      confidence: `${confidence}%`,
+      detail: `Below the ${Math.round(LOW_CONFIDENCE_THRESHOLD * 100)}% warning threshold; verify this is the exercise you intended.`,
+      isWarning: true,
+    };
+  }
+
+  if (mapping.isCustom) {
+    return {
+      icon: "📝",
+      label: "Custom",
+      className: "custom",
+      matchedTitle: mapping.templateTitle,
+      confidence: `${confidence}%`,
+      detail: "Matched an existing custom exercise template.",
+      isWarning: false,
+    };
+  }
+
+  if (mapping.matchScore < 1) {
+    return {
+      icon: "~",
+      label: "Fuzzy match",
+      className: "fuzzy",
+      matchedTitle: mapping.templateTitle,
+      confidence: `${confidence}%`,
+      detail: "Matched by name similarity.",
+      isWarning: false,
+    };
+  }
+
+  return {
+    icon: "✓",
+    label: "Exact match",
+    className: "ok",
+    matchedTitle: mapping.templateTitle,
+    confidence: "100%",
+    detail: "Exact or explicit exercise mapping.",
+    isWarning: false,
+  };
+}
+
+function summarizeSets(sets: HevySet[]): string {
+  const first = sets[0];
+  if (!first) return "0 sets";
+  if (first.distance_meters != null) {
+    return `${sets.length} × ${first.distance_meters}m${first.duration_seconds != null ? ` / ${first.duration_seconds}s` : ""}`;
+  }
+  if (first.duration_seconds != null) {
+    return `${sets.length} × ${first.duration_seconds}s`;
+  }
+  if (first.weight_kg != null) {
+    return `${sets.length} × ${first.reps ?? "?"} @ ${first.weight_kg}kg`;
+  }
+  if (first.reps != null) {
+    return `${sets.length} × ${first.reps} reps`;
+  }
+  return `${sets.length} sets`;
+}
+
+function printDryRunSummary(
+  plan: RoutinePlan,
+  exerciseMapping?: Map<string, ExerciseMapping>,
+  mappingError?: string
+): void {
   console.log("📋 DRY RUN SUMMARY:");
   console.log("===================\n");
 
-  console.log("Exercises to map:");
+  console.log("Exercise mapping preview:");
+  if (mappingError) {
+    console.log(`  ⚠️  ${mappingError}`);
+  }
   for (const name of plan.uniqueExerciseNames) {
-    const isCustom = CUSTOM_EXERCISES.some(
-      (c) => c.title.toLowerCase() === name.toLowerCase()
-    );
-    console.log(`  ${isCustom ? "📝 [CUSTOM]" : "✓"} ${name}`);
+    const mapping = exerciseMapping?.get(name);
+    const status = getExerciseDisplayStatus(name, mapping);
+    const arrow = exerciseMapping
+      ? ` → ${status.matchedTitle} (${status.confidence})`
+      : "";
+    console.log(`  ${status.icon} [${status.label}] ${name}${arrow}`);
+    if (status.isWarning) {
+      console.log(`      ${status.detail}`);
+    }
   }
 
   console.log("\n\nFolders to create:");
@@ -559,20 +752,13 @@ function printDryRunSummary(plan: RoutinePlan): void {
         `    📋 ${routine.title} (${routine.exercises.length} exercises)`
       );
       for (const ex of routine.exercises) {
-        const first = ex.sets[0];
-        const summary = first
-          ? first.distance_meters != null
-            ? `${ex.sets.length} × ${first.distance_meters}m${first.duration_seconds != null ? ` / ${first.duration_seconds}s` : ""}`
-            : first.duration_seconds != null
-              ? `${ex.sets.length} × ${first.duration_seconds}s`
-              : first.weight_kg != null
-                ? `${ex.sets.length} × ${first.reps ?? "?"} @ ${first.weight_kg}kg`
-                : first.reps != null
-                  ? `${ex.sets.length} × ${first.reps} reps`
-                  : `${ex.sets.length} sets`
-          : "0 sets";
+        const mapping = exerciseMapping?.get(ex.name);
+        const status = getExerciseDisplayStatus(ex.name, mapping);
+        const matchSuffix = exerciseMapping
+          ? ` → ${status.matchedTitle} ${status.isWarning ? "⚠️" : ""}`
+          : "";
         console.log(
-          `       - ${ex.name}: ${summary}${ex.notes ? ` (${ex.notes})` : ""}`
+          `       - ${ex.name}${matchSuffix}: ${summarizeSets(ex.sets)}${ex.notes ? ` (${ex.notes})` : ""}`
         );
       }
       if (routine.notes) {
@@ -580,6 +766,257 @@ function printDryRunSummary(plan: RoutinePlan): void {
       }
     }
   }
+}
 
-  console.log("\n✅ Dry run complete. Use without --dry-run to execute.\n");
+function escapeHtml(value: string | number | undefined): string {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function formatHtmlNotes(notes: string | undefined): string {
+  if (!notes) return "";
+  return escapeHtml(notes).replace(/\n/g, "<br>");
+}
+
+function slugify(value: string): string {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "") || "hevy-dry-run";
+}
+
+function buildMappingRows(
+  plan: RoutinePlan,
+  exerciseMapping?: Map<string, ExerciseMapping>
+): string {
+  return Array.from(plan.uniqueExerciseNames)
+    .map((name) => {
+      const mapping = exerciseMapping?.get(name);
+      const status = getExerciseDisplayStatus(name, mapping);
+      return `<tr class="${status.className}">
+        <td><span class="status ${status.className}">${escapeHtml(status.icon)} ${escapeHtml(status.label)}</span></td>
+        <td class="source">${escapeHtml(name)}</td>
+        <td>${escapeHtml(status.matchedTitle)}</td>
+        <td>${escapeHtml(status.confidence)}</td>
+        <td>${escapeHtml(status.detail)}</td>
+      </tr>`;
+    })
+    .join("\n");
+}
+
+function buildRoutineHtml(
+  routine: PlannedRoutine,
+  exerciseMapping?: Map<string, ExerciseMapping>
+): string {
+  const exerciseRows = routine.exercises
+    .map((ex) => {
+      const mapping = exerciseMapping?.get(ex.name);
+      const status = getExerciseDisplayStatus(ex.name, mapping);
+      return `<tr class="${status.className}">
+        <td class="source">${escapeHtml(ex.name)}</td>
+        <td>${escapeHtml(summarizeSets(ex.sets))}</td>
+        <td>${formatHtmlNotes(ex.notes)}</td>
+        <td><span class="status ${status.className}">${escapeHtml(status.icon)} ${escapeHtml(status.label)}</span></td>
+        <td>${escapeHtml(status.matchedTitle)}</td>
+        <td>${escapeHtml(status.confidence)}</td>
+      </tr>`;
+    })
+    .join("\n");
+
+  return `<article class="routine-card">
+    <h3>📋 ${escapeHtml(routine.title)}</h3>
+    ${routine.notes ? `<p class="routine-notes">${formatHtmlNotes(routine.notes)}</p>` : ""}
+    <table>
+      <thead>
+        <tr><th>CSV exercise</th><th>Sets</th><th>Notes</th><th>Match status</th><th>Hevy exercise</th><th>Confidence</th></tr>
+      </thead>
+      <tbody>${exerciseRows}</tbody>
+    </table>
+  </article>`;
+}
+
+function buildFoldersHtml(
+  plan: RoutinePlan,
+  exerciseMapping?: Map<string, ExerciseMapping>
+): string {
+  return plan.folders
+    .map((folder, index) => {
+      const routines = folder.routines
+        .map((routine) => buildRoutineHtml(routine, exerciseMapping))
+        .join("\n");
+      return `<details class="folder" ${index === 0 ? "open" : ""}>
+        <summary>📁 ${escapeHtml(folder.title)} <span>${folder.routines.length} routines</span></summary>
+        ${routines}
+      </details>`;
+    })
+    .join("\n");
+}
+
+function buildDryRunHtml(
+  plan: RoutinePlan,
+  result: DryRunMappingResult
+): string {
+  const uniqueExerciseCount = plan.uniqueExerciseNames.size;
+  const routineCount = plan.folders.reduce(
+    (sum, folder) => sum + folder.routines.length,
+    0
+  );
+  const exerciseInstanceCount = plan.folders.reduce(
+    (sum, folder) =>
+      sum +
+      folder.routines.reduce(
+        (routineSum, routine) => routineSum + routine.exercises.length,
+        0
+      ),
+    0
+  );
+  const warningCount = result.exerciseMapping
+    ? Array.from(plan.uniqueExerciseNames).filter((name) =>
+        getExerciseDisplayStatus(name, result.exerciseMapping?.get(name))
+          .isWarning
+      ).length
+    : 0;
+  const generatedAt = new Date().toLocaleString();
+  const thresholdPercent = Math.round(LOW_CONFIDENCE_THRESHOLD * 100);
+  const mappingNote = result.exerciseMapping
+    ? `Fetched ${result.templateCount ?? 0} Hevy exercises from the API. Warnings show matches below ${thresholdPercent}%.`
+    : `No Hevy API exercise list was available, so confidence warnings could not be calculated.${
+        result.mappingError ? ` ${result.mappingError}` : ""
+      }`;
+
+  return `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hevy Dry Run — ${escapeHtml(plan.programLabel)}</title>
+  <style>
+    :root { color-scheme: light; --bg:#f6f7fb; --panel:#ffffff; --text:#172033; --muted:#64748b; --border:#d9e1ee; --ok:#0f766e; --ok-bg:#ccfbf1; --fuzzy:#7c3aed; --fuzzy-bg:#ede9fe; --custom:#0369a1; --custom-bg:#e0f2fe; --warn:#b45309; --warn-bg:#fff7ed; --warn-line:#fdba74; --unknown:#475569; --unknown-bg:#f1f5f9; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); line-height: 1.45; }
+    header { padding: 36px 28px 24px; background: linear-gradient(135deg, #0f172a, #1e3a8a); color: white; }
+    header h1 { margin: 0 0 8px; font-size: clamp(28px, 5vw, 44px); }
+    header p { margin: 0; opacity: 0.85; }
+    main { max-width: 1180px; margin: 0 auto; padding: 24px; }
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin-top: -46px; margin-bottom: 24px; }
+    .stat { background: var(--panel); border: 1px solid var(--border); border-radius: 16px; padding: 18px; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08); }
+    .stat strong { display: block; font-size: 28px; }
+    .stat span { color: var(--muted); font-size: 13px; text-transform: uppercase; letter-spacing: .04em; }
+    section, .folder, .routine-card { background: var(--panel); border: 1px solid var(--border); border-radius: 16px; margin-bottom: 18px; box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05); }
+    section { padding: 20px; }
+    h2 { margin: 0 0 12px; }
+    .note { color: var(--muted); margin-top: 0; }
+    .flow { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+    .flow span { background: #eef2ff; border: 1px solid #c7d2fe; color: #3730a3; border-radius: 999px; padding: 8px 12px; font-weight: 650; }
+    .flow b { color: var(--muted); }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; text-align: left; }
+    th { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; background: #f8fafc; }
+    tr.warning { background: var(--warn-bg); }
+    tr.warning td:first-child { border-left: 4px solid var(--warn-line); }
+    .source { font-weight: 700; }
+    .status { display: inline-block; border-radius: 999px; padding: 4px 8px; font-size: 12px; font-weight: 800; white-space: nowrap; }
+    .status.ok { background: var(--ok-bg); color: var(--ok); }
+    .status.fuzzy { background: var(--fuzzy-bg); color: var(--fuzzy); }
+    .status.custom { background: var(--custom-bg); color: var(--custom); }
+    .status.warning { background: var(--warn-bg); color: var(--warn); }
+    .status.unknown { background: var(--unknown-bg); color: var(--unknown); }
+    details.folder { overflow: hidden; }
+    details.folder > summary { cursor: pointer; list-style: none; padding: 16px 20px; font-size: 20px; font-weight: 800; display: flex; justify-content: space-between; gap: 16px; }
+    details.folder > summary::-webkit-details-marker { display: none; }
+    details.folder > summary span { color: var(--muted); font-size: 14px; font-weight: 600; }
+    .routine-card { margin: 0 16px 16px; padding: 16px; box-shadow: none; }
+    .routine-card h3 { margin: 0 0 10px; }
+    .routine-notes { margin: 0 0 12px; padding: 10px 12px; border-radius: 12px; background: #f8fafc; color: #334155; }
+    footer { color: var(--muted); text-align: center; padding: 20px; }
+    @media (max-width: 760px) { main { padding: 14px; } table { display: block; overflow-x: auto; } .stats { margin-top: 0; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🏋 Hevy Dry Run</h1>
+    <p>${escapeHtml(plan.programLabel)} · generated ${escapeHtml(generatedAt)}</p>
+  </header>
+  <main>
+    <div class="stats">
+      <div class="stat"><strong>${uniqueExerciseCount}</strong><span>Unique exercises</span></div>
+      <div class="stat"><strong>${plan.folders.length}</strong><span>Folders</span></div>
+      <div class="stat"><strong>${routineCount}</strong><span>Routines</span></div>
+      <div class="stat"><strong>${exerciseInstanceCount}</strong><span>Exercise rows</span></div>
+      <div class="stat"><strong>${warningCount}</strong><span>Match warnings</span></div>
+    </div>
+
+    <section>
+      <h2>Import flow</h2>
+      <p class="note">Static dry-run preview only — no server and no writes to Hevy.</p>
+      <div class="flow"><span>CSV plan</span><b>→</b><span>Routine folders</span><b>→</b><span>Exercise matching</span><b>→</b><span>Hevy sync payload</span></div>
+      <p class="note">${escapeHtml(mappingNote)}</p>
+    </section>
+
+    <section>
+      <h2>Exercise matching</h2>
+      <table>
+        <thead><tr><th>Status</th><th>CSV exercise</th><th>Hevy exercise</th><th>Confidence</th><th>Notes</th></tr></thead>
+        <tbody>${buildMappingRows(plan, result.exerciseMapping)}</tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Planned routines</h2>
+      <p class="note">Open each folder to inspect the generated routines, sets, notes, and matched Hevy exercises.</p>
+    </section>
+
+    ${buildFoldersHtml(plan, result.exerciseMapping)}
+  </main>
+  <footer>Generated by <code>pnpm start… --dry-run</code>. Review warnings before running a real sync.</footer>
+</body>
+</html>`;
+}
+
+async function writeDryRunHtmlReport(
+  plan: RoutinePlan,
+  result: DryRunMappingResult
+): Promise<string> {
+  const dir = resolve(DRY_RUN_REPORT_DIR);
+  await mkdir(dir, { recursive: true });
+  const filePath = resolve(dir, `${slugify(plan.programLabel)}.html`);
+  await writeFile(filePath, buildDryRunHtml(plan, result), "utf8");
+  return filePath;
+}
+
+async function openFileInBrowser(filePath: string): Promise<boolean> {
+  const target = pathToFileURL(filePath).href;
+  let command: string;
+  let args: string[];
+
+  if (process.platform === "darwin") {
+    command = "open";
+    args = [target];
+  } else if (process.platform === "win32") {
+    command = "cmd";
+    args = ["/c", "start", "", target];
+  } else {
+    command = "xdg-open";
+    args = [target];
+  }
+
+  return new Promise((resolveOpen) => {
+    const child = spawn(command, args, { detached: true, stdio: "ignore" });
+    let settled = false;
+    const settle = (value: boolean) => {
+      if (!settled) {
+        settled = true;
+        resolveOpen(value);
+      }
+    };
+    child.once("error", () => settle(false));
+    child.once("spawn", () => {
+      child.unref();
+      settle(true);
+    });
+  });
 }

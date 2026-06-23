@@ -139,11 +139,15 @@ function groupByWeekAndDay(rows: CsvRow[]): ParsedWeek[] {
   return result.sort((a, b) => a.weekNumber - b.weekNumber);
 }
 
-function buildExerciseNotes(exercise: ParsedExercise): string {
+function buildExerciseNotes(
+  exercise: ParsedExercise,
+  extraNotes: string[] = []
+): string {
   const parts: string[] = [];
   if (exercise.percentTm && exercise.percentTm !== "-") {
     parts.push(`${exercise.percentTm} TM`);
   }
+  parts.push(...extraNotes.filter(Boolean));
   if (exercise.notes) parts.push(exercise.notes);
   return parts.join(" - ");
 }
@@ -169,6 +173,167 @@ function buildSets(exercise: ParsedExercise): HevySet[] {
   return sets;
 }
 
+interface NormalizedExerciseEntry {
+  name: string;
+  extraNotes: string[];
+}
+
+function noteAlreadyMentions(rawNotes: string, phrase: string): boolean {
+  const normalize = (value: string) => value.toLowerCase().replace(/[-_]/g, " ");
+  return normalize(rawNotes).includes(normalize(phrase));
+}
+
+function baseLiftName(name: string): string {
+  const lower = name.toLowerCase();
+  if (
+    /^(?:light\s+)?(?:high\s+bar\s+)?back\s+squat(?:\s+\(backoff\)|\s+-\s+new\s+1rm)?$/.test(
+      lower
+    ) ||
+    /^(?:light\s+)?high\s+bar\s+squat(?:\s+\(backoff\)|\s+-\s+new\s+1rm)?$/.test(
+      lower
+    ) ||
+    lower === "light squat"
+  ) {
+    return "Back Squat";
+  }
+  if (
+    /^(?:light\s+)?bench\s+press(?:\s+\(backoff\)|\s+-\s+new\s+1rm)?$/.test(
+      lower
+    ) ||
+    lower === "light bench"
+  ) {
+    return "Bench Press";
+  }
+  if (/^(?:light\s+)?deadlift(?:\s+\(backoff\)|\s+-\s+new\s+1rm)?$/.test(lower)) {
+    return "Deadlift";
+  }
+  return name;
+}
+
+function findPreviousWorkingWeight(
+  dayExercises: ParsedExercise[],
+  currentIndex: number,
+  normalizedName: string
+): number | null {
+  for (let i = currentIndex - 1; i >= 0; i--) {
+    const candidate = dayExercises[i];
+    if (
+      baseLiftName(candidate.name) === normalizedName &&
+      typeof candidate.weightKg === "number"
+    ) {
+      return candidate.weightKg;
+    }
+  }
+  return null;
+}
+
+function backoffNote(
+  exercise: ParsedExercise,
+  dayExercises: ParsedExercise[],
+  currentIndex: number,
+  normalizedName: string
+): string {
+  const previousWeight = findPreviousWorkingWeight(
+    dayExercises,
+    currentIndex,
+    normalizedName
+  );
+  if (previousWeight && typeof exercise.weightKg === "number") {
+    const percentOfWorkingWeight = Math.round(
+      (exercise.weightKg / previousWeight) * 100
+    );
+    return `Backoff sets at ${percentOfWorkingWeight}% of working weight`;
+  }
+  return "Backoff sets";
+}
+
+function normalizePowerliftingExercise(
+  exercise: ParsedExercise,
+  dayExercises: ParsedExercise[],
+  currentIndex: number
+): NormalizedExerciseEntry[] {
+  const name = exercise.name;
+  const lower = name.toLowerCase();
+  const extraNotes: string[] = [];
+
+  const addHighBarNote = () => {
+    if (!noteAlreadyMentions(exercise.notes, "high bar")) {
+      extraNotes.push("High bar");
+    }
+  };
+
+  if (name === "Cable Woodchop") {
+    const sharedNotes = ["Cable woodchop split by direction"];
+    return [
+      {
+        name: "Cable Twist (up to down)",
+        extraNotes: [...sharedNotes, "Up-to-down direction"],
+      },
+      {
+        name: "Cable Twist (Down to up)",
+        extraNotes: [...sharedNotes, "Down-to-up direction"],
+      },
+    ];
+  }
+
+  if (name === "Larsen Press (feet up)") {
+    return [
+      {
+        name: "Feet Up Bench Press (Barbell)",
+        extraNotes: ["Larsen press / feet-up bench"],
+      },
+    ];
+  }
+
+  const pauseMatch = /^Pause Squat \((\d+) sec\)$/.exec(name);
+  if (pauseMatch) {
+    return [
+      {
+        name: "Pause Squat (Barbell)",
+        extraNotes: [`${pauseMatch[1]} sec pause`],
+      },
+    ];
+  }
+
+  if (name === "Ring Dip") {
+    return [{ name: "Ring Dips", extraNotes }];
+  }
+
+  if (name === "Inverted Row (Rings)") {
+    return [{ name: "Inverted Row", extraNotes: ["Rings"] }];
+  }
+
+  if (lower.includes("high bar squat")) {
+    addHighBarNote();
+  }
+
+  if (lower.includes("backoff")) {
+    const normalizedName = baseLiftName(name);
+    extraNotes.push(
+      backoffNote(exercise, dayExercises, currentIndex, normalizedName)
+    );
+    return [{ name: normalizedName, extraNotes }];
+  }
+
+  if (lower.startsWith("light ")) {
+    const normalizedName = baseLiftName(name);
+    extraNotes.push("Light / recovery sets");
+    return [{ name: normalizedName, extraNotes }];
+  }
+
+  if (lower.includes("new 1rm")) {
+    const normalizedName = baseLiftName(name);
+    extraNotes.push("New 1RM attempt");
+    return [{ name: normalizedName, extraNotes }];
+  }
+
+  if (name === "High Bar Squat") {
+    return [{ name: "Back Squat", extraNotes }];
+  }
+
+  return [{ name, extraNotes }];
+}
+
 export async function buildPowerliftingPlan(
   weekRange: [number, number] | null,
   config: PowerliftingConfig = PHASE1_CONFIG
@@ -188,11 +353,6 @@ export async function buildPowerliftingPlan(
   console.log(`   Found ${weeks.length} weeks to process\n`);
 
   const uniqueExerciseNames = new Set<string>();
-  for (const week of weeks) {
-    for (const day of week.days) {
-      for (const ex of day.exercises) uniqueExerciseNames.add(ex.name);
-    }
-  }
 
   const folders: PlannedFolder[] = [];
   for (const week of weeks) {
@@ -211,26 +371,35 @@ export async function buildPowerliftingPlan(
       const oldRoutineTitle = day.dayName;
 
       const exercises: PlannedExerciseSpec[] = [];
-      for (const ex of day.exercises) {
+      for (const [index, ex] of day.exercises.entries()) {
         const sets = buildSets(ex);
         if (sets.length === 0) continue;
 
-        let notes = buildExerciseNotes(ex);
-        if (ex.reps === "AMRAP") {
-          notes = notes ? `AMRAP - ${notes}` : "AMRAP";
-        } else if (ex.reps === "Easy") {
-          notes = notes ? `Easy reps - ${notes}` : "Easy reps";
+        const normalizedEntries = normalizePowerliftingExercise(
+          ex,
+          day.exercises,
+          index
+        );
+
+        for (const entry of normalizedEntries) {
+          let notes = buildExerciseNotes(ex, entry.extraNotes);
+          if (ex.reps === "AMRAP") {
+            notes = notes ? `AMRAP - ${notes}` : "AMRAP";
+          } else if (ex.reps === "Easy") {
+            notes = notes ? `Easy reps - ${notes}` : "Easy reps";
+          }
+
+          const isCompound = ex.percentTm && ex.percentTm !== "-";
+          const rest_seconds = isCompound ? 120 : 45;
+
+          uniqueExerciseNames.add(entry.name);
+          exercises.push({
+            name: entry.name,
+            sets,
+            ...(notes ? { notes } : {}),
+            rest_seconds,
+          });
         }
-
-        const isCompound = ex.percentTm && ex.percentTm !== "-";
-        const rest_seconds = isCompound ? 120 : 45;
-
-        exercises.push({
-          name: ex.name,
-          sets,
-          ...(notes ? { notes } : {}),
-          rest_seconds,
-        });
       }
 
       routines.push({

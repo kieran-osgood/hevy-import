@@ -16,34 +16,6 @@ export const CUSTOM_EXERCISES: Array<{
   secondaryMuscles: MuscleGroup[];
 }> = [
   {
-    title: "Pause Squat (3 sec)",
-    type: "weight_reps",
-    equipment: "barbell",
-    primaryMuscle: "quads",
-    secondaryMuscles: ["glutes", "hamstrings"],
-  },
-  {
-    title: "Pause Squat (2 sec)",
-    type: "weight_reps",
-    equipment: "barbell",
-    primaryMuscle: "quads",
-    secondaryMuscles: ["glutes", "hamstrings"],
-  },
-  {
-    title: "Pause Squat (1 sec)",
-    type: "weight_reps",
-    equipment: "barbell",
-    primaryMuscle: "quads",
-    secondaryMuscles: ["glutes", "hamstrings"],
-  },
-  {
-    title: "Larsen Press (feet up)",
-    type: "weight_reps",
-    equipment: "barbell",
-    primaryMuscle: "chest",
-    secondaryMuscles: ["triceps", "shoulders"],
-  },
-  {
     title: 'Spoto Press (1" pause)',
     type: "weight_reps",
     equipment: "barbell",
@@ -79,25 +51,11 @@ export const CUSTOM_EXERCISES: Array<{
     secondaryMuscles: ["chest", "shoulders"],
   },
   {
-    title: "Inverted Row (Rings)",
-    type: "bodyweight_reps",
-    equipment: "other",
-    primaryMuscle: "back",
-    secondaryMuscles: ["biceps"],
-  },
-  {
     title: "Cable Crunch",
     type: "weight_reps",
     equipment: "cable",
     primaryMuscle: "abs",
     secondaryMuscles: [],
-  },
-  {
-    title: "Cable Woodchop",
-    type: "weight_reps",
-    equipment: "cable",
-    primaryMuscle: "abs",
-    secondaryMuscles: ["other"],
   },
   {
     title: "Face Pull",
@@ -112,69 +70,6 @@ export const CUSTOM_EXERCISES: Array<{
     equipment: "machine",
     primaryMuscle: "chest",
     secondaryMuscles: [],
-  },
-  {
-    title: "Back Squat (backoff)",
-    type: "weight_reps",
-    equipment: "barbell",
-    primaryMuscle: "quads",
-    secondaryMuscles: ["glutes", "hamstrings"],
-  },
-  {
-    title: "Bench Press (backoff)",
-    type: "weight_reps",
-    equipment: "barbell",
-    primaryMuscle: "chest",
-    secondaryMuscles: ["triceps", "shoulders"],
-  },
-  {
-    title: "Deadlift (backoff)",
-    type: "weight_reps",
-    equipment: "barbell",
-    primaryMuscle: "back",
-    secondaryMuscles: ["hamstrings", "glutes"],
-  },
-  {
-    title: "Light Squat",
-    type: "weight_reps",
-    equipment: "barbell",
-    primaryMuscle: "quads",
-    secondaryMuscles: ["glutes", "hamstrings"],
-  },
-  {
-    title: "Light Bench",
-    type: "weight_reps",
-    equipment: "barbell",
-    primaryMuscle: "chest",
-    secondaryMuscles: ["triceps", "shoulders"],
-  },
-  {
-    title: "Light Deadlift",
-    type: "weight_reps",
-    equipment: "barbell",
-    primaryMuscle: "back",
-    secondaryMuscles: ["hamstrings", "glutes"],
-  },
-  {
-    title: "Back Squat - NEW 1RM",
-    type: "weight_reps",
-    equipment: "barbell",
-    primaryMuscle: "quads",
-    secondaryMuscles: ["glutes", "hamstrings"],
-  },
-  {
-    title: "Bench Press - NEW 1RM",
-    type: "weight_reps",
-    equipment: "barbell",
-    primaryMuscle: "chest",
-    secondaryMuscles: ["triceps", "shoulders"],
-  },
-  {
-    title: "Deadlift - NEW 1RM",
-    type: "weight_reps",
-    equipment: "barbell",
-    primaryMuscle: "back",
-    secondaryMuscles: ["hamstrings", "glutes"],
   },
   {
     title: "Optional: 2nd attempt",
@@ -477,29 +372,73 @@ export const CUSTOM_EXERCISES: Array<{
   },
 ];
 
-// Explicit mappings for exercises that have different names in Hevy
-const EXPLICIT_MAPPINGS: Record<string, string> = {
-  "Back Squat": "Squat (Barbell)",
-  "Bench Press": "Bench Press (Barbell)",
-  Deadlift: "Deadlift (Barbell)",
-  "Romanian Deadlift": "Romanian Deadlift (Barbell)",
-  "Leg Press": "Leg Press (Machine)",
-  "Leg Extension": "Leg Extension (Machine)",
-  "Pull Up": "Pull Up",
-  "Chest Dip": "Dip",
-  "Incline DB Press": "Incline Dumbbell Bench Press",
-  "Seated Cable Row": "Seated Cable Row",
-  "Barbell Curl": "Barbell Curl",
-  "Barbell Row": "Barbell Row",
-  "Front Squat": "Front Squat (Barbell)",
-  "Lateral Raise": "Lateral Raise (Dumbbell)",
-  "Hanging Leg Raise": "Hanging Leg Raise",
-  "Tricep Extension (Cable)": "Triceps Pushdown",
-  "Leg Curl": "Seated Leg Curl (Machine)",
-  "Single Arm Landmine Press": "Single Arm Landmine Press",
-  "Ring Dip": "Ring Dip",
-  "Ring Rollout": "Ring Rollout",
-  "Single Leg Romanian Deadlift (Dumbbell)": "Single Leg Romanian Deadlift (Dumbbell)",
+// Explicit mappings for exercises that have different names in Hevy.
+// Values are ordered aliases: use the first title that exists in the user's
+// Hevy template list. If none exist, fuzzy-match only against these intended
+// target aliases (not the source name), so e.g. Leg Curl cannot drift to Drag Curl.
+const EXPLICIT_TARGET_FUZZY_THRESHOLD = 0.8;
+const EXPLICIT_MAPPINGS: Record<string, string[]> = {
+  "Back Squat": ["Squat (Barbell)"],
+  "High Bar Squat": ["Squat (Barbell)"],
+  "Pause Squat (1 sec)": ["Pause Squat (Barbell)"],
+  "Pause Squat (2 sec)": ["Pause Squat (Barbell)"],
+  "Pause Squat (3 sec)": ["Pause Squat (Barbell)"],
+  "Pause Squat (Barbell)": ["Pause Squat (Barbell)"],
+  "Bench Press": ["Bench Press (Barbell)"],
+  "Feet Up Bench Press (Barbell)": ["Feet Up Bench Press (Barbell)"],
+  Deadlift: ["Deadlift (Barbell)"],
+  "Romanian Deadlift": ["Romanian Deadlift (Barbell)"],
+  "Leg Press": ["Leg Press (Machine)", "Leg Press Machine", "Leg Press"],
+  "Leg Extension": [
+    "Leg Extension (Machine)",
+    "Leg Extension Machine",
+    "Leg Extension",
+  ],
+  "Pull Up": ["Pull Up", "Pull Ups", "Pull-up", "Pull-ups"],
+  "Chest Dip": ["Dip", "Dips", "Chest Dip", "Chest Dips"],
+  "Incline DB Press": [
+    "Incline Dumbbell Bench Press",
+    "Incline Dumbbell Bench Press (Dumbbell)",
+    "Incline Dumbbell Press",
+  ],
+  "Seated Cable Row": ["Seated Cable Row - Bar Grip", "Seated Cable Row"],
+  "Barbell Curl": ["Bicep Curl (Barbell)", "Barbell Curl"],
+  "Barbell Row": ["Bent Over Row (Barbell)", "Barbell Row"],
+  "Front Squat": ["Front Squat (Barbell)", "Front Squat"],
+  "Lateral Raise": ["Lateral Raise (Dumbbell)"],
+  "Hanging Leg Raise": ["Hanging Leg Raise"],
+  "Tricep Extension (Cable)": [
+    "Triceps Pushdown",
+    "Tricep Pushdown",
+    "Cable Triceps Pushdown",
+  ],
+  "Leg Curl": [
+    "Seated Leg Curl (Machine)",
+    "Seated Leg Curl Machine",
+    "Seated Leg Curl",
+    "Leg Curl Machine",
+    "Leg Curl (Machine)",
+    "Leg Curl",
+    "Lying Leg Curl Machine",
+    "Lying Leg Curl (Machine)",
+    "Lying Leg Curl",
+    "Hamstring Curl (Machine)",
+    "Hamstring Curl Machine",
+  ],
+  "Single Arm Landmine Press": [
+    "Single Arm Landmine Press",
+    "Single Arm Landmine Press (Barbell)",
+    "Single-Arm Landmine Press",
+    "Single-Arm Landmine Press (Barbell)",
+  ],
+  "Ring Dip": ["Ring Dips", "Ring Dip"],
+  "Ring Dips": ["Ring Dips", "Ring Dip"],
+  "Ring Rollout": ["Ring Rollout"],
+  "Inverted Row": ["Inverted Row"],
+  "Inverted Row (Rings)": ["Inverted Row"],
+  "Single Leg Romanian Deadlift (Dumbbell)": [
+    "Single Leg Romanian Deadlift (Dumbbell)",
+  ],
 };
 
 export function buildExerciseMapping(
@@ -520,22 +459,65 @@ export function buildExerciseMapping(
       continue;
     }
 
-    // Check explicit mappings first
-    if (EXPLICIT_MAPPINGS[csvExercise]) {
-      const matchedTemplate = hevyTemplates.find(
-        (t) =>
-          t.title.toLowerCase() === EXPLICIT_MAPPINGS[csvExercise].toLowerCase()
-      );
+    // Check explicit mappings first. Exact aliases win; if no exact alias
+    // exists, fuzzy-match the intended aliases only (not the source name), then
+    // flag a gap rather than letting unrelated exercises win by accident.
+    const explicitTargets = EXPLICIT_MAPPINGS[csvExercise];
+    if (explicitTargets) {
+      let matchedTemplate: HevyExerciseTemplate | undefined;
+      let matchScore = 1;
+
+      for (const target of explicitTargets) {
+        matchedTemplate = hevyTemplates.find(
+          (t) => t.title.toLowerCase() === target.toLowerCase()
+        );
+        if (matchedTemplate) break;
+      }
+
+      if (!matchedTemplate) {
+        let best:
+          | { template: HevyExerciseTemplate; rating: number }
+          | undefined;
+        for (const target of explicitTargets) {
+          const result = stringSimilarity.findBestMatch(
+            target.toLowerCase(),
+            templateTitles
+          );
+          const template = hevyTemplates.find(
+            (t) => t.title.toLowerCase() === result.bestMatch.target
+          );
+          if (
+            template &&
+            result.bestMatch.rating >= EXPLICIT_TARGET_FUZZY_THRESHOLD &&
+            (!best || result.bestMatch.rating > best.rating)
+          ) {
+            best = { template, rating: result.bestMatch.rating };
+          }
+        }
+        if (best) {
+          matchedTemplate = best.template;
+          matchScore = best.rating;
+        }
+      }
+
       if (matchedTemplate) {
         mapping.set(csvExercise, {
           csvName: csvExercise,
           templateId: matchedTemplate.id,
           templateTitle: matchedTemplate.title,
-          matchScore: 1,
+          matchScore,
           isCustom: false,
         });
-        continue;
+      } else {
+        mapping.set(csvExercise, {
+          csvName: csvExercise,
+          templateId: "__NEEDS_CREATION__",
+          templateTitle: explicitTargets[0] ?? csvExercise,
+          matchScore: 0,
+          isCustom: false,
+        });
       }
+      continue;
     }
 
     // Check if it's a custom exercise we need to create
