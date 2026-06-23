@@ -47,6 +47,15 @@ preview to `dry-run-reports/<program>.html` and auto-open it in your browser. If
 flags exercise matches below 80% confidence so suspicious matches are easier to
 review before syncing.
 
+To build the static GitHub Pages site locally:
+
+```bash
+pnpm build:site
+```
+
+This writes `dist/site/index.html` plus pages for the current active plans:
+powerlifting and half marathon.
+
 ### CI (GitHub Actions)
 
 The **Sync Hevy Routines** workflow runs the import via `workflow_dispatch`.
@@ -56,4 +65,8 @@ explicitly — and optionally set `week` / `from_week`; `HEVY_API_KEY` comes fro
 repo secrets. Phase 1 remains archived in the repo for local historical runs,
 but is intentionally not available from workflow dispatch to avoid syncing an
 old routine by mistake.
+
+The **Deploy Training Plans to GitHub Pages** workflow runs on every push to
+`main`, builds `pnpm build:site`, uploads `dist/site`, and deploys the static
+training-plan index plus active program pages to GitHub Pages.
 </content>
