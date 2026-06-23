@@ -495,7 +495,7 @@ const EXPLICIT_MAPPINGS: Record<string, string> = {
   "Lateral Raise": "Lateral Raise (Dumbbell)",
   "Hanging Leg Raise": "Hanging Leg Raise",
   "Tricep Extension (Cable)": "Triceps Pushdown",
-  "Leg Curl": "Leg Curl (Machine)",
+  "Leg Curl": "Seated Leg Curl (Machine)",
   "Single Arm Landmine Press": "Single Arm Landmine Press",
   "Ring Dip": "Ring Dip",
   "Ring Rollout": "Ring Rollout",
