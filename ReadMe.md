@@ -2,6 +2,7 @@ Docs: https://api.hevyapp.com/docs/#/RoutineFolders/get_v1_routine_folders
 OpenAPI JSON: https://api.hevyapp.com/docs.json
 Get api key from: https://hevy.com/settings?developer
 
+<!-- CLI usage and dry-run behavior from package.json scripts, hevy-routine-import.ts, and programs/sync.ts -->
 ## Usage
 
 > **Note:** do not use a `--` separator before the flags. The arg parser
@@ -39,6 +40,12 @@ with phase-appropriate warmup and cooldown moves from the protocols CSV.
 
 Imports are typically run one week at a time (`--week N`) to stay within Hevy's
 API rate limits.
+
+Dry runs still print the plan in the terminal, and also write a static HTML
+preview to `dry-run-reports/<program>.html` and auto-open it in your browser. If
+`HEVY_API_KEY` is present, the dry run fetches your Hevy exercise templates and
+flags exercise matches below 80% confidence so suspicious matches are easier to
+review before syncing.
 
 ### CI (GitHub Actions)
 
