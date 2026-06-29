@@ -58,6 +58,13 @@ export const CUSTOM_EXERCISES: Array<{
     secondaryMuscles: [],
   },
   {
+    title: "Ab Wheel",
+    type: "bodyweight_reps",
+    equipment: "bodyweight",
+    primaryMuscle: "abs",
+    secondaryMuscles: [],
+  },
+  {
     title: "Face Pull",
     type: "weight_reps",
     equipment: "cable",
@@ -434,6 +441,12 @@ const EXPLICIT_MAPPINGS: Record<string, string[]> = {
   "Ring Dip": ["Ring Dips", "Ring Dip"],
   "Ring Dips": ["Ring Dips", "Ring Dip"],
   "Ring Rollout": ["Ring Rollout"],
+  "Ab Wheel": [
+    "Ab Wheel",
+    "Ab Wheel (Bodyweight)",
+    "Ab Wheel Rollout",
+    "Ab Wheel Rollout (Bodyweight)",
+  ],
   "Inverted Row": ["Inverted Row"],
   "Inverted Row (Rings)": ["Inverted Row"],
   "Single Leg Romanian Deadlift (Dumbbell)": [

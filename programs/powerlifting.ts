@@ -19,6 +19,8 @@ export interface PowerliftingConfig {
   programLabel: string;
   /** Suffix used to build the legacy ("old") folder/routine alternate titles. */
   programSuffix: string;
+  /** Day codes retained in the CSV but intentionally omitted from generated sync plans. */
+  disabledDayCodes?: string[];
 }
 
 const PHASE1_CONFIG: PowerliftingConfig = {
@@ -33,6 +35,8 @@ const PHASE2_CONFIG: PowerliftingConfig = {
   csvFile: "../16-week-powerlifting-phase2.csv",
   programLabel: "PL Program - P2",
   programSuffix: "Phase 2 - Rebuild and Push",
+  // Keep the volume day in the CSV, but don't sync it while running volume is high.
+  disabledDayCodes: ["D"],
 };
 
 // The "current" phase. Bump this pointer when a new phase is added — the bare
@@ -353,6 +357,12 @@ export async function buildPowerliftingPlan(
   console.log(`   Found ${weeks.length} weeks to process\n`);
 
   const uniqueExerciseNames = new Set<string>();
+  const disabledDayCodes = new Set(config.disabledDayCodes ?? []);
+  if (disabledDayCodes.size > 0) {
+    console.log(
+      `   Disabled day codes for sync: ${Array.from(disabledDayCodes).join(", ")}\n`
+    );
+  }
 
   const folders: PlannedFolder[] = [];
   for (const week of weeks) {
@@ -362,6 +372,8 @@ export async function buildPowerliftingPlan(
 
     const routines: PlannedRoutine[] = [];
     for (const day of week.days) {
+      if (disabledDayCodes.has(day.dayCode)) continue;
+
       const cleaned = cleanDayName(day.dayName);
       const routineTitle =
         cleaned.toLowerCase() === weekLabel.toLowerCase()
