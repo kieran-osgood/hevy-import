@@ -65,6 +65,13 @@ export const CUSTOM_EXERCISES: Array<{
     secondaryMuscles: [],
   },
   {
+    title: "Back Extension",
+    type: "bodyweight_reps",
+    equipment: "bodyweight",
+    primaryMuscle: "back",
+    secondaryMuscles: ["glutes", "hamstrings"],
+  },
+  {
     title: "Face Pull",
     type: "weight_reps",
     equipment: "cable",
@@ -446,6 +453,12 @@ const EXPLICIT_MAPPINGS: Record<string, string[]> = {
     "Ab Wheel (Bodyweight)",
     "Ab Wheel Rollout",
     "Ab Wheel Rollout (Bodyweight)",
+  ],
+  "Back Extension": [
+    "Back Extension",
+    "Back Extension (Bodyweight)",
+    "Hyperextension",
+    "Hyperextensions",
   ],
   "Inverted Row": ["Inverted Row"],
   "Inverted Row (Rings)": ["Inverted Row"],
