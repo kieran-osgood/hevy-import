@@ -801,11 +801,11 @@ function buildMappingRows(
       const mapping = exerciseMapping?.get(name);
       const status = getExerciseDisplayStatus(name, mapping);
       return `<tr class="${status.className}">
-        <td><span class="status ${status.className}">${escapeHtml(status.icon)} ${escapeHtml(status.label)}</span></td>
-        <td class="source">${escapeHtml(name)}</td>
-        <td>${escapeHtml(status.matchedTitle)}</td>
-        <td>${escapeHtml(status.confidence)}</td>
-        <td>${escapeHtml(status.detail)}</td>
+        <td data-label="Status"><span class="cell-val"><span class="status ${status.className}">${escapeHtml(status.icon)} ${escapeHtml(status.label)}</span></span></td>
+        <td class="source" data-label="CSV exercise" title="${escapeHtml(name)}"><span class="cell-val">${escapeHtml(name)}</span></td>
+        <td data-label="Hevy exercise" title="${escapeHtml(status.matchedTitle)}"><span class="cell-val">${escapeHtml(status.matchedTitle)}</span></td>
+        <td data-label="Confidence"><span class="cell-val">${escapeHtml(status.confidence)}</span></td>
+        <td data-label="Notes" title="${escapeHtml(status.detail)}"><span class="cell-val">${escapeHtml(status.detail)}</span></td>
       </tr>`;
     })
     .join("\n");
@@ -820,12 +820,12 @@ function buildRoutineHtml(
       const mapping = exerciseMapping?.get(ex.name);
       const status = getExerciseDisplayStatus(ex.name, mapping);
       return `<tr class="${status.className}">
-        <td class="source">${escapeHtml(ex.name)}</td>
-        <td>${escapeHtml(summarizeSets(ex.sets))}</td>
-        <td>${formatHtmlNotes(ex.notes)}</td>
-        <td><span class="status ${status.className}">${escapeHtml(status.icon)} ${escapeHtml(status.label)}</span></td>
-        <td>${escapeHtml(status.matchedTitle)}</td>
-        <td>${escapeHtml(status.confidence)}</td>
+        <td class="source" data-label="CSV exercise" title="${escapeHtml(ex.name)}"><span class="cell-val">${escapeHtml(ex.name)}</span></td>
+        <td data-label="Sets"><span class="cell-val">${escapeHtml(summarizeSets(ex.sets))}</span></td>
+        <td data-label="Notes" title="${escapeHtml(ex.notes)}"><span class="cell-val">${formatHtmlNotes(ex.notes)}</span></td>
+        <td data-label="Match status"><span class="cell-val"><span class="status ${status.className}">${escapeHtml(status.icon)} ${escapeHtml(status.label)}</span></span></td>
+        <td data-label="Hevy exercise" title="${escapeHtml(status.matchedTitle)}"><span class="cell-val">${escapeHtml(status.matchedTitle)}</span></td>
+        <td data-label="Confidence"><span class="cell-val">${escapeHtml(status.confidence)}</span></td>
       </tr>`;
     })
     .join("\n");
@@ -847,11 +847,11 @@ function buildFoldersHtml(
   exerciseMapping?: Map<string, ExerciseMapping>
 ): string {
   return plan.folders
-    .map((folder, index) => {
+    .map((folder) => {
       const routines = folder.routines
         .map((routine) => buildRoutineHtml(routine, exerciseMapping))
         .join("\n");
-      return `<details class="folder" ${index === 0 ? "open" : ""}>
+      return `<details class="folder">
         <summary>📁 ${escapeHtml(folder.title)} <span>${folder.routines.length} routines</span></summary>
         ${routines}
       </details>`;
@@ -903,45 +903,69 @@ export function buildDryRunHtml(
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${escapeHtml(titlePrefix)} — ${escapeHtml(plan.programLabel)}</title>
   <style>
-    :root { color-scheme: light; --bg:#f6f7fb; --panel:#ffffff; --text:#172033; --muted:#64748b; --border:#d9e1ee; --ok:#0f766e; --ok-bg:#ccfbf1; --fuzzy:#7c3aed; --fuzzy-bg:#ede9fe; --custom:#0369a1; --custom-bg:#e0f2fe; --warn:#b45309; --warn-bg:#fff7ed; --warn-line:#fdba74; --unknown:#475569; --unknown-bg:#f1f5f9; }
+    :root {
+      color-scheme: light;
+      --bg:#fafafa; --panel:#ffffff; --text:#09090b; --muted:#71717a;
+      --border:#e4e4e7; --border-soft:#f4f4f5;
+      --ok:#15803d; --ok-bg:#f0fdf4; --ok-border:#bbf7d0;
+      --fuzzy:#6d28d9; --fuzzy-bg:#f5f3ff; --fuzzy-border:#ddd6fe;
+      --custom:#0369a1; --custom-bg:#f0f9ff; --custom-border:#bae6fd;
+      --warn:#b45309; --warn-bg:#fffbeb; --warn-border:#fde68a;
+      --unknown:#52525b; --unknown-bg:#f4f4f5; --unknown-border:#e4e4e7;
+      --radius: 10px;
+    }
     * { box-sizing: border-box; }
-    body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); line-height: 1.45; }
-    header { padding: 36px 28px 24px; background: linear-gradient(135deg, #0f172a, #1e3a8a); color: white; }
-    header h1 { margin: 0 0 8px; font-size: clamp(28px, 5vw, 44px); }
-    header p { margin: 0; opacity: 0.85; }
-    main { max-width: 1180px; margin: 0 auto; padding: 24px; }
-    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin-top: -46px; margin-bottom: 24px; }
-    .stat { background: var(--panel); border: 1px solid var(--border); border-radius: 16px; padding: 18px; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08); }
-    .stat strong { display: block; font-size: 28px; }
-    .stat span { color: var(--muted); font-size: 13px; text-transform: uppercase; letter-spacing: .04em; }
-    section, .folder, .routine-card { background: var(--panel); border: 1px solid var(--border); border-radius: 16px; margin-bottom: 18px; box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05); }
-    section { padding: 20px; }
-    h2 { margin: 0 0 12px; }
-    .note { color: var(--muted); margin-top: 0; }
-    .flow { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
-    .flow span { background: #eef2ff; border: 1px solid #c7d2fe; color: #3730a3; border-radius: 999px; padding: 8px 12px; font-weight: 650; }
-    .flow b { color: var(--muted); }
-    table { width: 100%; border-collapse: collapse; font-size: 14px; }
-    th, td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; text-align: left; }
-    th { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; background: #f8fafc; }
-    tr.warning { background: var(--warn-bg); }
-    tr.warning td:first-child { border-left: 4px solid var(--warn-line); }
-    .source { font-weight: 700; }
-    .status { display: inline-block; border-radius: 999px; padding: 4px 8px; font-size: 12px; font-weight: 800; white-space: nowrap; }
-    .status.ok { background: var(--ok-bg); color: var(--ok); }
-    .status.fuzzy { background: var(--fuzzy-bg); color: var(--fuzzy); }
-    .status.custom { background: var(--custom-bg); color: var(--custom); }
-    .status.warning { background: var(--warn-bg); color: var(--warn); }
-    .status.unknown { background: var(--unknown-bg); color: var(--unknown); }
+    body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Inter, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; font-size: 14px; -webkit-font-smoothing: antialiased; }
+    header { padding: 28px 24px; background: var(--panel); border-bottom: 1px solid var(--border); }
+    header h1 { margin: 0 0 4px; font-size: 20px; font-weight: 600; letter-spacing: -0.01em; }
+    header p { margin: 0; color: var(--muted); font-size: 13px; }
+    main { max-width: 1080px; margin: 0 auto; padding: 24px; }
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 20px; }
+    .stat { background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
+    .stat strong { display: block; font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+    .stat span { color: var(--muted); font-size: 12px; }
+    section, .folder, .routine-card { background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; }
+    section { padding: 18px 20px; }
+    h2 { margin: 0 0 10px; font-size: 15px; font-weight: 600; }
+    .note { color: var(--muted); margin-top: 0; font-size: 13px; }
+    .flow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+    .flow span { background: var(--border-soft); border: 1px solid var(--border); color: var(--text); border-radius: 6px; padding: 5px 10px; font-size: 12px; font-weight: 500; }
+    .flow b { color: var(--muted); font-weight: 400; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th, td { padding: 9px 12px; border-bottom: 1px solid var(--border-soft); vertical-align: top; text-align: left; }
+    th { color: var(--muted); font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: .04em; }
+    tbody tr:last-child td { border-bottom: none; }
+    tr.warning td:first-child { border-left: 2px solid var(--warn); }
+    .source { font-weight: 500; }
+    .status { display: inline-flex; align-items: center; gap: 4px; border-radius: 6px; padding: 3px 8px; font-size: 12px; font-weight: 500; white-space: nowrap; border: 1px solid transparent; }
+    .status.ok { background: var(--ok-bg); color: var(--ok); border-color: var(--ok-border); }
+    .status.fuzzy { background: var(--fuzzy-bg); color: var(--fuzzy); border-color: var(--fuzzy-border); }
+    .status.custom { background: var(--custom-bg); color: var(--custom); border-color: var(--custom-border); }
+    .status.warning { background: var(--warn-bg); color: var(--warn); border-color: var(--warn-border); }
+    .status.unknown { background: var(--unknown-bg); color: var(--unknown); border-color: var(--unknown-border); }
     details.folder { overflow: hidden; }
-    details.folder > summary { cursor: pointer; list-style: none; padding: 16px 20px; font-size: 20px; font-weight: 800; display: flex; justify-content: space-between; gap: 16px; }
+    details.folder > summary { cursor: pointer; list-style: none; padding: 14px 18px; font-size: 14px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    details.folder > summary::before { content: "▸"; display: inline-block; margin-right: 8px; color: var(--muted); transition: transform 0.15s ease; }
+    details.folder[open] > summary::before { transform: rotate(90deg); }
     details.folder > summary::-webkit-details-marker { display: none; }
-    details.folder > summary span { color: var(--muted); font-size: 14px; font-weight: 600; }
-    .routine-card { margin: 0 16px 16px; padding: 16px; box-shadow: none; }
-    .routine-card h3 { margin: 0 0 10px; }
-    .routine-notes { margin: 0 0 12px; padding: 10px 12px; border-radius: 12px; background: #f8fafc; color: #334155; }
-    footer { color: var(--muted); text-align: center; padding: 20px; }
-    @media (max-width: 760px) { main { padding: 14px; } table { display: block; overflow-x: auto; } .stats { margin-top: 0; } }
+    details.folder > summary span { color: var(--muted); font-size: 12px; font-weight: 500; }
+    .routine-card { margin: 0 14px 14px; padding: 14px; }
+    .routine-card h3 { margin: 0 0 10px; font-size: 13px; font-weight: 600; }
+    .routine-notes { margin: 0 0 12px; padding: 8px 10px; border-radius: 6px; background: var(--border-soft); color: var(--muted); font-size: 12px; }
+    footer { color: var(--muted); text-align: center; padding: 20px; font-size: 12px; }
+
+    @media (max-width: 700px) {
+      main { padding: 14px; }
+      header { padding: 20px 16px; }
+      table, thead, tbody, th, td, tr { display: block; }
+      thead { position: absolute; top: -9999px; left: -9999px; }
+      table { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+      tbody tr { border-bottom: 1px solid var(--border); padding: 4px 0; }
+      tbody tr:last-child { border-bottom: none; }
+      td { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; border-bottom: none; padding: 6px 12px; min-width: 0; }
+      td::before { content: attr(data-label); color: var(--muted); font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: .03em; text-align: left; white-space: nowrap; flex-shrink: 0; }
+      .cell-val { min-width: 0; flex: 1 1 auto; text-align: right; white-space: normal; overflow-wrap: break-word; word-break: break-word; }
+    }
   </style>
 </head>
 <body>
@@ -959,11 +983,11 @@ export function buildDryRunHtml(
     </div>
 
     <section>
-      <h2>Import flow</h2>
-      <p class="note">Static dry-run preview only — no server and no writes to Hevy.</p>
-      <div class="flow"><span>CSV plan</span><b>→</b><span>Routine folders</span><b>→</b><span>Exercise matching</span><b>→</b><span>Hevy sync payload</span></div>
-      <p class="note">${escapeHtml(mappingNote)}</p>
+      <h2>Planned routines</h2>
+      <p class="note">Open each folder to inspect the generated routines, sets, notes, and matched Hevy exercises.</p>
     </section>
+
+    ${buildFoldersHtml(plan, result.exerciseMapping)}
 
     <section>
       <h2>Exercise matching</h2>
@@ -974,11 +998,11 @@ export function buildDryRunHtml(
     </section>
 
     <section>
-      <h2>Planned routines</h2>
-      <p class="note">Open each folder to inspect the generated routines, sets, notes, and matched Hevy exercises.</p>
+      <h2>Import flow</h2>
+      <p class="note">Static dry-run preview only — no server and no writes to Hevy.</p>
+      <div class="flow"><span>CSV plan</span><b>→</b><span>Routine folders</span><b>→</b><span>Exercise matching</span><b>→</b><span>Hevy sync payload</span></div>
+      <p class="note">${escapeHtml(mappingNote)}</p>
     </section>
-
-    ${buildFoldersHtml(plan, result.exerciseMapping)}
   </main>
   <footer>${footerHtml}</footer>
 </body>

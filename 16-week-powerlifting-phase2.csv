@@ -12,6 +12,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 1,B - Bench,Tricep Extension (Cable),3,15,-,25,,,
 1,B - Bench,Cable Woodchop,3,12,-,20,,,Per side
 1,B - Bench,Single Arm Landmine Press,3,8-12,-,20,,,Per arm
+1,B - Bench,Pike Push Up,2,AMRAP,-,BW,,,
 1,B - Bench,Ab Wheel,3,10,-,BW,,,Controlled reps
 1,C - Deadlift,Deficit Deadlift (5cm),4,6,65%,122.5,,,"Stand on plate, control descent"
 1,C - Deadlift,Pull Up,4,AMRAP,-,BW,,,Rings or bar
@@ -39,6 +40,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 2,B - Bench,Tricep Extension (Cable),3,15,-,25,,,
 2,B - Bench,Cable Woodchop,3,12,-,20,,,Per side
 2,B - Bench,Single Arm Landmine Press,3,8-12,-,20,,,Per arm
+2,B - Bench,Pike Push Up,2,AMRAP,-,BW,,,
 2,B - Bench,Ab Wheel,3,10,-,BW,,,Controlled reps
 2,C - Deadlift,Deficit Deadlift (5cm),4,6,67%,127.5,,,
 2,C - Deadlift,Pull Up,4,AMRAP,-,BW,,,
@@ -66,6 +68,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 3,B - Bench,Tricep Extension (Cable),4,12,-,25,,,
 3,B - Bench,Cable Woodchop,3,12,-,22.5,,,Per side
 3,B - Bench,Single Arm Landmine Press,3,8-12,-,20,,,Per arm
+3,B - Bench,Pike Push Up,2,AMRAP,-,BW,,,
 3,B - Bench,Ab Wheel,3,10,-,BW,,,Controlled reps
 3,C - Deadlift,Deficit Deadlift (5cm),4,5,70%,132.5,,,
 3,C - Deadlift,Pull Up,4,AMRAP,-,BW,,,
@@ -105,6 +108,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 5,B - Bench,Tricep Extension (Cable),3,12,-,25,,,
 5,B - Bench,Cable Woodchop,3,12,-,22.5,,,Per side
 5,B - Bench,Single Arm Landmine Press,3,8-12,-,20,,,Per arm
+5,B - Bench,Pike Push Up,2,AMRAP,-,BW,,,
 5,B - Bench,Ab Wheel,3,10,-,BW,,,Controlled reps
 5,C - Deadlift,Deadlift,5,5,75%,142.5,,,Competition style
 5,C - Deadlift,Deficit Deadlift (2.5cm),3,4,65%,122.5,,,Smaller deficit now
@@ -133,6 +137,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 6,B - Bench,Tricep Extension (Cable),3,12,-,25,,,
 6,B - Bench,Cable Woodchop,3,12,-,22.5,,,Per side
 6,B - Bench,Single Arm Landmine Press,3,8-12,-,20,,,Per arm
+6,B - Bench,Pike Push Up,2,AMRAP,-,BW,,,
 6,B - Bench,Ab Wheel,3,10,-,BW,,,Controlled reps
 6,C - Deadlift,Deadlift,5,4,80%,152.5,,,
 6,C - Deadlift,Deficit Deadlift (2.5cm),3,3,70%,132.5,,,
@@ -161,6 +166,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 7,B - Bench,Tricep Extension (Cable),3,10,-,25,,,
 7,B - Bench,Cable Woodchop,3,12,-,25,,,Per side
 7,B - Bench,Single Arm Landmine Press,3,8-12,-,20,,,Per arm
+7,B - Bench,Pike Push Up,2,AMRAP,-,BW,,,
 7,B - Bench,Ab Wheel,3,10,-,BW,,,Controlled reps
 7,C - Deadlift,Deadlift,4,3,85%,162.5,,,Heavy triples
 7,C - Deadlift,Paused Deadlift (below knee),3,3,70%,132.5,,,New variation
@@ -197,6 +203,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 9,B - Bench,Chest Dip,2,AMRAP,-,BW,,,
 9,B - Bench,Tricep Extension (Cable),2,10,-,25,,,
 9,B - Bench,Single Arm Landmine Press,2,8-12,-,20,,,Per arm
+9,B - Bench,Pike Push Up,2,AMRAP,-,BW,,,
 9,B - Bench,Ab Wheel,2,10,-,BW,,,Controlled reps
 9,C - Deadlift,Deadlift,4,3,87%,165,,,
 9,C - Deadlift,Paused Deadlift (below knee),2,2,72%,137.5,,,
@@ -216,6 +223,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 10,B - Bench,Bench Press,3,2,90%,102.5,,,Heavy doubles
 10,B - Bench,Bench Press (backoff),2,4,75%,85,,,
 10,B - Bench,Tricep Extension (Cable),2,10,-,25,,,
+10,B - Bench,Pike Push Up,2,AMRAP,-,BW,,,
 10,B - Bench,Ab Wheel,2,10,-,BW,,,Controlled reps
 10,C - Deadlift,Deadlift,3,2,90%,170,,,Heavy doubles
 10,C - Deadlift,Deadlift (backoff),2,3,75%,142.5,,,
@@ -232,6 +240,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 11,B - Bench,Bench Press,2,1,95%,110,,,Heavy singles
 11,B - Bench,Bench Press (backoff),2,3,80%,92.5,,,
 11,B - Bench,Tricep Extension (Cable),2,10,-,25,,,
+11,B - Bench,Pike Push Up,2,AMRAP,-,BW,,,
 11,B - Bench,Ab Wheel,2,10,-,BW,,,Controlled reps
 11,C - Deadlift,Deadlift,2,1,95%,180,,,Heavy singles
 11,C - Deadlift,Deadlift (backoff),2,3,80%,152.5,,,
