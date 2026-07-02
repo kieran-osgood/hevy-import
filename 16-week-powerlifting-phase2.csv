@@ -16,7 +16,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 1,B - Bench,Ab Wheel,3,10,-,BW,,,Controlled reps
 1,C - Deadlift,Deficit Deadlift (5cm),4,6,65%,122.5,,,"Stand on plate, control descent"
 1,C - Deadlift,Pull Up,4,AMRAP,-,BW,,,Rings or bar
-1,C - Deadlift,Seated Cable Row,3,12,-,60,,,
+1,C - Deadlift,Barbell Row,3,12,-,60,,,
 1,C - Deadlift,Barbell Curl,3,12,-,34,,,
 1,C - Deadlift,Cable Crunch,3,15,-,36,,,
 1,C - Deadlift,Back Extension,2,12,-,BW,,,Easy posterior-chain accessory
@@ -44,7 +44,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 2,B - Bench,Ab Wheel,3,10,-,BW,,,Controlled reps
 2,C - Deadlift,Deficit Deadlift (5cm),4,6,67%,127.5,,,
 2,C - Deadlift,Pull Up,4,AMRAP,-,BW,,,
-2,C - Deadlift,Seated Cable Row,3,12,-,60,,,
+2,C - Deadlift,Barbell Row,3,12,-,60,,,
 2,C - Deadlift,Barbell Curl,3,12,-,34,,,
 2,C - Deadlift,Cable Crunch,3,15,-,36,,,
 2,C - Deadlift,Back Extension,2,12,-,BW,,,Easy posterior-chain accessory
@@ -72,7 +72,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 3,B - Bench,Ab Wheel,3,10,-,BW,,,Controlled reps
 3,C - Deadlift,Deficit Deadlift (5cm),4,5,70%,132.5,,,
 3,C - Deadlift,Pull Up,4,AMRAP,-,BW,,,
-3,C - Deadlift,Seated Cable Row,4,10,-,60,,,
+3,C - Deadlift,Barbell Row,4,10,-,60,,,
 3,C - Deadlift,Barbell Curl,3,10,-,34,,,
 3,C - Deadlift,Cable Crunch,3,15,-,36,,,
 3,C - Deadlift,Back Extension,2,12,-,BW,,,Easy posterior-chain accessory
