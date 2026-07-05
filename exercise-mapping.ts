@@ -72,6 +72,13 @@ export const CUSTOM_EXERCISES: Array<{
     secondaryMuscles: ["glutes", "hamstrings"],
   },
   {
+    title: "Nordic Hamstring Curl",
+    type: "bodyweight_reps",
+    equipment: "bodyweight",
+    primaryMuscle: "hamstrings",
+    secondaryMuscles: ["glutes"],
+  },
+  {
     title: "Face Pull",
     type: "weight_reps",
     equipment: "cable",
@@ -438,6 +445,13 @@ const EXPLICIT_MAPPINGS: Record<string, string[]> = {
     "Lying Leg Curl",
     "Hamstring Curl (Machine)",
     "Hamstring Curl Machine",
+  ],
+  "Seated Calf Raise": [
+    "Seated Calf Raise (Machine)",
+    "Seated Calf Raise Machine",
+    "Seated Calf Raise",
+    "Calf Press (Machine)",
+    "Calf Raise (Machine)",
   ],
   "Single Arm Landmine Press": [
     "Single Arm Landmine Press",

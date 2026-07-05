@@ -1,9 +1,9 @@
 WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 1,A - Squat,Single Leg Romanian Deadlift (Dumbbell),2,10,-,12,,,Per leg - hamstring prep
 1,A - Squat,Pause Squat (3 sec),4,8,65%,77.5,,,"Pause in hole, stay tight | High-bar, knees-forward"
-1,A - Squat,Bulgarian Split Squat,3,10,-,20,,,Per leg - back-sparing unilateral quad work
-1,A - Squat,Leg Curl,3,12,-,40,,,
-1,A - Squat,Leg Extension,3,15,-,75,,,
+1,A - Squat,Seated Calf Raise,3,15,-,40,,,Full ROM - pause at stretch and peak contraction
+1,A - Squat,Nordic Hamstring Curl,3,6-8,-,BW,,,Band/partner-assisted eccentric - reduce assistance as strength improves
+1,A - Squat,Leg Extension,2,15,-,75,,,
 1,A - Squat,Hanging Leg Raise,3,10,-,BW,,,
 1,B - Bench,Larsen Press (feet up),4,8,65%,75,,,"Pause on chest, no leg drive"
 1,B - Bench,Incline DB Press,3,10,-,26,,,
@@ -29,9 +29,9 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 1,D - Volume,Face Pull,3,15,-,12,,,
 2,A - Squat,Single Leg Romanian Deadlift (Dumbbell),2,10,-,12,,,Per leg - hamstring prep
 2,A - Squat,Pause Squat (3 sec),4,8,67%,80,,,"+2% from last week | High-bar, knees-forward"
-2,A - Squat,Bulgarian Split Squat,3,10,-,22.5,,,Per leg - back-sparing unilateral quad work
-2,A - Squat,Leg Curl,3,12,-,40,,,
-2,A - Squat,Leg Extension,3,15,-,75,,,
+2,A - Squat,Seated Calf Raise,3,15,-,42.5,,,
+2,A - Squat,Nordic Hamstring Curl,3,6-8,-,BW,,,
+2,A - Squat,Leg Extension,2,15,-,75,,,
 2,A - Squat,Hanging Leg Raise,3,12,-,BW,,,
 2,B - Bench,Larsen Press (feet up),4,8,67%,77.5,,,
 2,B - Bench,Incline DB Press,3,10,-,26,,,
@@ -57,9 +57,9 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 2,D - Volume,Face Pull,3,15,-,12,,,
 3,A - Squat,Single Leg Romanian Deadlift (Dumbbell),2,10,-,12,,,Per leg - hamstring prep
 3,A - Squat,Pause Squat (3 sec),4,6,70%,85,,,"Intensity up, reps down | High-bar, knees-forward"
-3,A - Squat,Bulgarian Split Squat,3,8,-,25,,,Per leg - back-sparing unilateral quad work
-3,A - Squat,Leg Curl,3,12,-,40,,,
-3,A - Squat,Leg Extension,3,12,-,75,,,
+3,A - Squat,Seated Calf Raise,3,12,-,45,,,"Intensity up, reps down"
+3,A - Squat,Nordic Hamstring Curl,3,6-8,-,BW,,,
+3,A - Squat,Leg Extension,2,15,-,75,,,
 3,A - Squat,Hanging Leg Raise,3,12,-,BW,,,
 3,B - Bench,Larsen Press (feet up),4,6,70%,80,,,
 3,B - Bench,Incline DB Press,4,8,-,26,,,
@@ -85,7 +85,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 3,D - Volume,Face Pull,3,15,-,12,,,
 4,A - Squat (DELOAD),Single Leg Romanian Deadlift (Dumbbell),2,10,-,12,,,Per leg - hamstring prep
 4,A - Squat (DELOAD),High Bar Squat,3,5,50%,60,,,DELOAD - easy movement
-4,A - Squat (DELOAD),Leg Extension,2,12,-,75,,,Light
+4,A - Squat (DELOAD),Leg Extension,2,15,-,75,,,Light
 4,A - Squat (DELOAD),Hanging Leg Raise,2,10,-,BW,,,
 4,B - Bench (DELOAD),Bench Press,3,5,50%,57.5,,,DELOAD - technique focus
 4,B - Bench (DELOAD),Pec Deck,2,12,-,50,,,Light
@@ -96,10 +96,10 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 4,C - Deadlift (DELOAD),Back Extension,2,12,-,BW,,,Easy posterior-chain accessory
 5,A - Squat,Single Leg Romanian Deadlift (Dumbbell),2,10,-,12,,,Per leg - hamstring prep
 5,A - Squat,High Bar Squat,5,5,75%,90,,,Competition style
-5,A - Squat,Bulgarian Split Squat,3,10,-,25,,,Per leg - back-sparing unilateral quad work
+5,A - Squat,Seated Calf Raise,3,15,-,45,,,
 5,A - Squat,Pause Squat (2 sec),3,4,65%,77.5,,,"Lighter variation work | High-bar, knees-forward"
-5,A - Squat,Leg Curl,3,12,-,40,,,
-5,A - Squat,Leg Extension,3,12,-,75,,,
+5,A - Squat,Nordic Hamstring Curl,3,6-8,-,BW,,,
+5,A - Squat,Leg Extension,2,15,-,75,,,
 5,A - Squat,Cable Crunch,3,12,-,36,,,
 5,B - Bench,Bench Press,5,5,75%,85,,,Competition style
 5,B - Bench,"Spoto Press (1"" pause)",3,5,65%,75,,,Pause just off chest
@@ -125,10 +125,10 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 5,D - Volume,Face Pull,3,15,-,12,,,
 6,A - Squat,Single Leg Romanian Deadlift (Dumbbell),2,10,-,12,,,Per leg - hamstring prep
 6,A - Squat,High Bar Squat,5,4,80%,95,,,+5% intensity
-6,A - Squat,Bulgarian Split Squat,3,8,-,27.5,,,Per leg - back-sparing unilateral quad work
+6,A - Squat,Seated Calf Raise,3,12,-,47.5,,,
 6,A - Squat,Pause Squat (2 sec),3,3,70%,85,,,"High-bar, knees-forward"
-6,A - Squat,Leg Curl,3,12,-,40,,,
-6,A - Squat,Leg Extension,3,12,-,75,,,
+6,A - Squat,Nordic Hamstring Curl,3,6-8,-,BW,,,
+6,A - Squat,Leg Extension,2,15,-,75,,,
 6,A - Squat,Cable Crunch,3,12,-,36,,,
 6,B - Bench,Bench Press,5,4,80%,92.5,,,
 6,B - Bench,"Spoto Press (1"" pause)",3,4,70%,80,,,
@@ -154,10 +154,10 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 6,D - Volume,Face Pull,3,15,-,12,,,
 7,A - Squat,Single Leg Romanian Deadlift (Dumbbell),2,10,-,12,,,Per leg - hamstring prep
 7,A - Squat,High Bar Squat,4,3,85%,102.5,,,Heavy triples
-7,A - Squat,Bulgarian Split Squat,3,8,-,30,,,Per leg - back-sparing unilateral quad work
+7,A - Squat,Seated Calf Raise,3,12,-,50,,,
 7,A - Squat,Pause Squat (2 sec),3,3,72%,87.5,,,"High-bar, knees-forward"
-7,A - Squat,Leg Curl,3,10,-,40,,,
-7,A - Squat,Leg Extension,3,10,-,75,,,
+7,A - Squat,Nordic Hamstring Curl,3,5-6,-,BW,,,
+7,A - Squat,Leg Extension,2,15,-,75,,,
 7,A - Squat,Cable Crunch,3,12,-,36,,,
 7,B - Bench,Bench Press,4,3,85%,97.5,,,Heavy triples
 7,B - Bench,"Spoto Press (1"" pause)",3,3,72%,82.5,,,
@@ -183,7 +183,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 7,D - Volume,Face Pull,3,12,-,12,,,
 8,A - Squat (DELOAD),Single Leg Romanian Deadlift (Dumbbell),2,10,-,12,,,Per leg - hamstring prep
 8,A - Squat (DELOAD),High Bar Squat,3,3,60%,72.5,,,DELOAD - speed work
-8,A - Squat (DELOAD),Leg Extension,2,12,-,75,,,Light
+8,A - Squat (DELOAD),Leg Extension,2,15,-,75,,,Light
 8,A - Squat (DELOAD),Cable Crunch,2,10,-,36,,,
 8,B - Bench (DELOAD),Bench Press,3,3,60%,70,,,DELOAD - explosive
 8,B - Bench (DELOAD),Pec Deck,2,12,-,50,,,Light
@@ -194,7 +194,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 8,C - Deadlift (DELOAD),Back Extension,2,12,-,BW,,,Easy posterior-chain accessory
 9,A - Squat,Single Leg Romanian Deadlift (Dumbbell),2,10,-,12,,,Per leg - hamstring prep
 9,A - Squat,High Bar Squat,4,3,87%,105,,,Peaking begins
-9,A - Squat,Bulgarian Split Squat,3,8,-,30,,,Per leg - back-sparing unilateral quad work
+9,A - Squat,Seated Calf Raise,3,12,-,50,,,
 9,A - Squat,Pause Squat (1 sec),2,2,75%,90,,,"Brief pause only | High-bar, knees-forward"
 9,A - Squat,Leg Extension,2,10,-,75,,,Reduced accessories
 9,A - Squat,Hanging Leg Raise,2,10,-,BW,,,
@@ -217,7 +217,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 9,D - Volume,Face Pull,2,15,-,12,,,
 10,A - Squat,Single Leg Romanian Deadlift (Dumbbell),2,10,-,12,,,Per leg - hamstring prep
 10,A - Squat,High Bar Squat,3,2,90%,107.5,,,Heavy doubles
-10,A - Squat,Bulgarian Split Squat,3,8,-,30,,,Per leg - back-sparing unilateral quad work
+10,A - Squat,Seated Calf Raise,3,12,-,52.5,,,
 10,A - Squat,High Bar Squat (backoff),2,4,75%,90,,,
 10,A - Squat,Leg Extension,2,10,-,75,,,
 10,B - Bench,Bench Press,3,2,90%,102.5,,,Heavy doubles
@@ -234,7 +234,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 10,D - Volume,Face Pull,2,15,-,12,,,
 11,A - Squat,Single Leg Romanian Deadlift (Dumbbell),2,10,-,12,,,Per leg - hamstring prep
 11,A - Squat,High Bar Squat,2,1,95%,115,,,Heavy singles - opener practice
-11,A - Squat,Bulgarian Split Squat,2,8,-,30,,,Per leg - back-sparing unilateral quad work
+11,A - Squat,Seated Calf Raise,2,12,-,52.5,,,
 11,A - Squat,High Bar Squat (backoff),2,3,80%,95,,,
 11,A - Squat,Leg Extension,2,10,-,75,,,
 11,B - Bench,Bench Press,2,1,95%,110,,,Heavy singles
@@ -256,7 +256,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 12,C - Deadlift (DELOAD),Back Extension,2,12,-,BW,,,Easy posterior-chain accessory
 13,A - Squat,Single Leg Romanian Deadlift (Dumbbell),2,10,-,12,,,Per leg - hamstring prep
 13,A - Squat,High Bar Squat,1,1,100%,120,,,Work up to Training Max
-13,A - Squat,Bulgarian Split Squat,2,8,-,30,,,Per leg - back-sparing unilateral quad work
+13,A - Squat,Seated Calf Raise,2,12,-,55,,,
 13,A - Squat,High Bar Squat (backoff),2,3,75%,90,,,
 13,B - Bench,Bench Press,1,1,100%,115,,,Work up to Training Max
 13,B - Bench,Bench Press (backoff),2,3,75%,85,,,
