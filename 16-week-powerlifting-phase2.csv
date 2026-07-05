@@ -196,7 +196,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 9,A - Squat,High Bar Squat,4,3,87%,105,,,Peaking begins
 9,A - Squat,Seated Calf Raise,3,12,-,50,,,
 9,A - Squat,Pause Squat (1 sec),2,2,75%,90,,,"Brief pause only | High-bar, knees-forward"
-9,A - Squat,Leg Extension,2,15,-,75,,,Reduced accessories
+9,A - Squat,Leg Extension,2,10,-,75,,,Reduced accessories
 9,A - Squat,Hanging Leg Raise,2,10,-,BW,,,
 9,B - Bench,Bench Press,4,3,87%,100,,,
 9,B - Bench,Close Grip Bench,2,4,72%,82.5,,,
@@ -219,7 +219,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 10,A - Squat,High Bar Squat,3,2,90%,107.5,,,Heavy doubles
 10,A - Squat,Seated Calf Raise,3,12,-,52.5,,,
 10,A - Squat,High Bar Squat (backoff),2,4,75%,90,,,
-10,A - Squat,Leg Extension,2,15,-,75,,,
+10,A - Squat,Leg Extension,2,10,-,75,,,
 10,B - Bench,Bench Press,3,2,90%,102.5,,,Heavy doubles
 10,B - Bench,Bench Press (backoff),2,4,75%,85,,,
 10,B - Bench,Tricep Extension (Cable),2,10,-,25,,,
@@ -236,7 +236,7 @@ WEEK,DAY,EXERCISE,SETS,REPS,% TM,WEIGHT (kg),ACTUAL REPS,RPE,NOTES
 11,A - Squat,High Bar Squat,2,1,95%,115,,,Heavy singles - opener practice
 11,A - Squat,Seated Calf Raise,2,12,-,52.5,,,
 11,A - Squat,High Bar Squat (backoff),2,3,80%,95,,,
-11,A - Squat,Leg Extension,2,15,-,75,,,
+11,A - Squat,Leg Extension,2,10,-,75,,,
 11,B - Bench,Bench Press,2,1,95%,110,,,Heavy singles
 11,B - Bench,Bench Press (backoff),2,3,80%,92.5,,,
 11,B - Bench,Tricep Extension (Cable),2,10,-,25,,,
